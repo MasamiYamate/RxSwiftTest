@@ -10,13 +10,13 @@ import Foundation
 import APIKit
 import SwiftyJSON
 import SwiftyXMLParser
+import RxCocoa
+import RxSwift
 
 protocol APIRequest: Request {
     var prms: [String:Any] {get set}
     var reqURL: String {get set}
     var reqMethod: HTTPMethod {get set}
-    
-    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> Response
 }
 
 extension APIRequest {

@@ -15,6 +15,6 @@ protocol DataStoreProtocol {
     
     var dataStoreSubject: PublishSubject<Output> { get }
     
-    func request (_ callback: @escaping (Output?) -> Void)
+    func request ()
     
 }

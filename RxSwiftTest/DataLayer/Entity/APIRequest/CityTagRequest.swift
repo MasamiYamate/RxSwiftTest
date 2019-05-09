@@ -9,9 +9,11 @@
 import Foundation
 import APIKit
 import SwiftyXMLParser
+import RxCocoa
+import RxSwift
 
 struct CityTagRequest: APIRequest {
-    typealias Response = XML.Accessor?
+    typealias Response = XML.Accessor
     
     var reqURL: String = WTApi.EndPoint.LIVEDOOR_WEATHER.rawValue
     
@@ -29,10 +31,9 @@ struct CityTagRequest: APIRequest {
     
     init() {}
     
-    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> CityTagRequest.Response {
+    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> XML.Accessor {
         guard let result: XML.Accessor = object as? XML.Accessor else {
-            print("\(self) get error")
-            return nil
+            throw ResponseError.unexpectedObject(object)
         }
         return result
     }
