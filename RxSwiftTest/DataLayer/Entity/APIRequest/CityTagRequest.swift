@@ -25,7 +25,7 @@ struct CityTagRequest: APIRequest {
         return XMLDataParser()
     }
     
-    var prms: [String : Any] = [:]
+    var prms: [String: Any] = [:]
     
     var reqMethod: HTTPMethod = .get
     

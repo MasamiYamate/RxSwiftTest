@@ -15,7 +15,7 @@ import RxCocoa
 import RxSwift
 
 /// livedoor天気情報の一次細分区定義表のDataStore
-struct CityTagDataStore: DataStoreProtocol  {
+struct CityTagDataStore: DataStoreProtocol {
 
     typealias Output = CityTagRequest.Response
     

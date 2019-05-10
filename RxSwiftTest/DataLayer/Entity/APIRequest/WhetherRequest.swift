@@ -19,12 +19,12 @@ struct WhetherRequest: APIRequest {
         return WTApi.WhetherPath.whetherPath.rawValue
     }
     
-    var prms: [String : Any] = [:]
+    var prms: [String: Any] = [:]
     
     var reqMethod: HTTPMethod = .get
     
-    init(_ id: String) {
-        prms["city"] = id
+    init(cityId: String) {
+        prms["city"] = cityId
     }
     
     func response(from object: Any, urlResponse: HTTPURLResponse) throws -> JSON {

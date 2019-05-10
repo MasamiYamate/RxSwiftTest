@@ -9,7 +9,6 @@
 //  Data to XMLに対応するためのクラス
 //
 
-
 import Foundation
 import APIKit
 import SwiftyXMLParser

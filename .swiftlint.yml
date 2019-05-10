@@ -1,5 +1,6 @@
 # 実行から除外するルール
 disabled_rules:
+- trailing_whitespace
 # テストコード、Pod等のライブラリは対象外
 excluded:
 - Pods/

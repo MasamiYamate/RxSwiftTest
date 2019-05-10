@@ -12,7 +12,7 @@ import SwiftyJSON
 import RxCocoa
 import RxSwift
 
-struct WhetherDataStore: DataStoreProtocol  {
+struct WhetherDataStore: DataStoreProtocol {
     
     typealias Output = JSON
     
@@ -22,12 +22,12 @@ struct WhetherDataStore: DataStoreProtocol  {
 
     var searchId: String = ""
     
-    init(_ id: String) {
-        searchId = id
+    init(cityId: String) {
+        searchId = cityId
     }
     
     func request() {
-        let whetherReq: WhetherRequest = WhetherRequest.init(searchId)
+        let whetherReq: WhetherRequest = WhetherRequest.init(cityId: searchId)
         Session.send(whetherReq) { result in
             switch result {
             case .success(let res):
