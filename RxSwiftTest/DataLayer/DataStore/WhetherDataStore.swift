@@ -16,7 +16,7 @@ struct WhetherDataStore: DataStoreProtocol {
     
     typealias Output = JSON
     
-    var dataStoreSubject: PublishSubject<JSON> {
+    var subject: PublishSubject<JSON> {
         return PublishSubject<JSON>()
     }
 
@@ -31,9 +31,9 @@ struct WhetherDataStore: DataStoreProtocol {
         Session.send(whetherReq) { result in
             switch result {
             case .success(let res):
-                self.dataStoreSubject.onNext(res)
+                self.subject.onNext(res)
             case .failure(let err):
-                self.dataStoreSubject.onError(err)
+                self.subject.onError(err)
             }
         }
     }

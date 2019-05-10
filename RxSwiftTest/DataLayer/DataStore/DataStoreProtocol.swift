@@ -13,7 +13,7 @@ import RxSwift
 protocol DataStoreProtocol {
     associatedtype Output
     
-    var dataStoreSubject: PublishSubject<Output> { get }
+    var subject: PublishSubject<Output> { get }
     
     func request ()
     

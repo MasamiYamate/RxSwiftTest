@@ -15,7 +15,6 @@ import RxSwift
 protocol RepositoryProtocol {
     associatedtype Output
     associatedtype DataStoreType
-    var repositorySubject: PublishSubject<Output> { get }
+    var subject: PublishSubject<Output> { get }
     var dataStore: DataStoreType { get }
-    func request()
 }

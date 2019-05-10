@@ -19,7 +19,7 @@ struct CityTagDataStore: DataStoreProtocol {
 
     typealias Output = CityTagRequest.Response
     
-    var dataStoreSubject: PublishSubject<XML.Accessor> {
+    var subject: PublishSubject<XML.Accessor> {
         return PublishSubject<XML.Accessor>()
     }
     
@@ -28,9 +28,9 @@ struct CityTagDataStore: DataStoreProtocol {
         Session.send(cityTagReq) { result in
             switch result {
             case .success(let res):
-                self.dataStoreSubject.onNext(res)
+                self.subject.onNext(res)
             case .failure(let err):
-                self.dataStoreSubject.onError(err)
+                self.subject.onError(err)
             }
         }
     }

@@ -1,5 +1,5 @@
 //
-//  CityTagRepository.swift
+//  WhetherRepository.swift
 //  RxSwiftTest
 //
 //  Created by MasamiYamate on 2019/05/10.
@@ -7,33 +7,34 @@
 //
 
 import Foundation
-import SwiftyXMLParser
+import SwiftyJSON
 import RxCocoa
 import RxSwift
 
-class CityTagRepository: RepositoryProtocol {
-    typealias Output = XML.Accessor
+class WhetherRepository: RepositoryProtocol {
     
-    typealias DataStoreType = CityTagDataStore
+    typealias Output = JSON
     
-    var subject: PublishSubject<XML.Accessor> {
-        return PublishSubject<XML.Accessor>()
+    typealias DataStoreType = WhetherDataStore
+    
+    var subject: PublishSubject<JSON> {
+        return PublishSubject<JSON>()
     }
     
-    var dataStore: CityTagDataStore {
-        return CityTagDataStore()
-    }
+    var dataStore: WhetherDataStore
     
     private var disponsable: Disposable?
     
-    init () {
+    init (cityId: String) {
+        //DataStoreの初期化
+        dataStore = WhetherDataStore(cityId: cityId)
         //init時にイベントの購読を開始させる
-        self.setSubscription()
+        setSubscription()
     }
-
+    
     //購読開始のイベント
     func setSubscription() {
-        disponsable = dataStore.subject.subscribe(onNext: {value in
+        disponsable = dataStore.subject.subscribe(onNext: { value in
             self.subject.onNext(value)
         }, onError: { error in
             self.subject.onError(error)
