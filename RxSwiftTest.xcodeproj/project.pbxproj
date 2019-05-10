@@ -10,6 +10,9 @@
 		040AFFA7C8E8F774A501F4AC /* Pods_RxSwiftTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C6BCA1BCCCBFCEA431DBFB9 /* Pods_RxSwiftTest.framework */; };
 		36D0C0A39BB9AAB640716E74 /* Pods_RxSwiftTestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74FE93608727105122FC481 /* Pods_RxSwiftTestUITests.framework */; };
 		52D4D649A813CC8A2169A0E4 /* Pods_RxSwiftTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B7EE4AE57C98D90B3D6C783 /* Pods_RxSwiftTestTests.framework */; };
+		D027E14622853CA00051F6D2 /* WhetherDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D027E14522853CA00051F6D2 /* WhetherDataModel.swift */; };
+		D027E149228540790051F6D2 /* Date+StringDateParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D027E148228540790051F6D2 /* Date+StringDateParse.swift */; };
+		D027E14B2285683A0051F6D2 /* WhetherForecastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D027E14A2285683A0051F6D2 /* WhetherForecastModel.swift */; };
 		D0792BD3228410AC001FF53A /* APIRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BD2228410AC001FF53A /* APIRequestProtocol.swift */; };
 		D0792BD6228413C3001FF53A /* XMLDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BD5228413C3001FF53A /* XMLDataParser.swift */; };
 		D0792BD8228413F4001FF53A /* CityTagRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BD7228413F4001FF53A /* CityTagRequest.swift */; };
@@ -21,6 +24,7 @@
 		D0792BE8228506E7001FF53A /* RepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BE7228506E7001FF53A /* RepositoryProtocol.swift */; };
 		D0792BEA228508D7001FF53A /* CityTagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BE9228508D7001FF53A /* CityTagRepository.swift */; };
 		D0792BED22851AED001FF53A /* WhetherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BEC22851AED001FF53A /* WhetherRepository.swift */; };
+		D0792BF022851FA0001FF53A /* CityTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BEF22851FA0001FF53A /* CityTagModel.swift */; };
 		D0AA6F222282538E0081AECB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AA6F212282538E0081AECB /* AppDelegate.swift */; };
 		D0AA6F242282538E0081AECB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AA6F232282538E0081AECB /* ViewController.swift */; };
 		D0AA6F272282538E0081AECB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0AA6F252282538E0081AECB /* Main.storyboard */; };
@@ -56,6 +60,9 @@
 		BA0B0AA608F39F279ECB88CF /* Pods-RxSwiftTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftTestTests.release.xcconfig"; path = "Target Support Files/Pods-RxSwiftTestTests/Pods-RxSwiftTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		C6963DE69B8990FD996E64E6 /* Pods-RxSwiftTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftTest.debug.xcconfig"; path = "Target Support Files/Pods-RxSwiftTest/Pods-RxSwiftTest.debug.xcconfig"; sourceTree = "<group>"; };
 		C74FE93608727105122FC481 /* Pods_RxSwiftTestUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxSwiftTestUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D027E14522853CA00051F6D2 /* WhetherDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhetherDataModel.swift; sourceTree = "<group>"; };
+		D027E148228540790051F6D2 /* Date+StringDateParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+StringDateParse.swift"; sourceTree = "<group>"; };
+		D027E14A2285683A0051F6D2 /* WhetherForecastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhetherForecastModel.swift; sourceTree = "<group>"; };
 		D0792BD2228410AC001FF53A /* APIRequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestProtocol.swift; sourceTree = "<group>"; };
 		D0792BD5228413C3001FF53A /* XMLDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLDataParser.swift; sourceTree = "<group>"; };
 		D0792BD7228413F4001FF53A /* CityTagRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTagRequest.swift; sourceTree = "<group>"; };
@@ -67,6 +74,7 @@
 		D0792BE7228506E7001FF53A /* RepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryProtocol.swift; sourceTree = "<group>"; };
 		D0792BE9228508D7001FF53A /* CityTagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTagRepository.swift; sourceTree = "<group>"; };
 		D0792BEC22851AED001FF53A /* WhetherRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhetherRepository.swift; sourceTree = "<group>"; };
+		D0792BEF22851FA0001FF53A /* CityTagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTagModel.swift; sourceTree = "<group>"; };
 		D0AA6F1E2282538E0081AECB /* RxSwiftTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSwiftTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0AA6F212282538E0081AECB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0AA6F232282538E0081AECB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +142,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D027E1472285402C0051F6D2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D027E148228540790051F6D2 /* Date+StringDateParse.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		D0792BCF22840E19001FF53A /* DataLayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +207,7 @@
 		D0792BE52285069E001FF53A /* DomainLayer */ = {
 			isa = PBXGroup;
 			children = (
+				D0792BEE22851F44001FF53A /* Model */,
 				D0792BE6228506C5001FF53A /* Repository */,
 			);
 			path = DomainLayer;
@@ -204,6 +221,16 @@
 				D0792BEC22851AED001FF53A /* WhetherRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		D0792BEE22851F44001FF53A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D0792BEF22851FA0001FF53A /* CityTagModel.swift */,
+				D027E14522853CA00051F6D2 /* WhetherDataModel.swift */,
+				D027E14A2285683A0051F6D2 /* WhetherForecastModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		D0AA6F152282538E0081AECB = {
@@ -231,6 +258,7 @@
 		D0AA6F202282538E0081AECB /* RxSwiftTest */ = {
 			isa = PBXGroup;
 			children = (
+				D027E1472285402C0051F6D2 /* Extension */,
 				D0792BE52285069E001FF53A /* DomainLayer */,
 				D0792BD92284140A001FF53A /* Parameters */,
 				D0792BCF22840E19001FF53A /* DataLayer */,
@@ -501,6 +529,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D027E14B2285683A0051F6D2 /* WhetherForecastModel.swift in Sources */,
 				D0792BE2228417C5001FF53A /* DataStoreProtocol.swift in Sources */,
 				D0792BE42284F655001FF53A /* WhetherDataStore.swift in Sources */,
 				D0AA6F242282538E0081AECB /* ViewController.swift in Sources */,
@@ -514,6 +543,9 @@
 				D0792BDB22841428001FF53A /* Parameters.swift in Sources */,
 				D0792BEA228508D7001FF53A /* CityTagRepository.swift in Sources */,
 				D0792BED22851AED001FF53A /* WhetherRepository.swift in Sources */,
+				D0792BF022851FA0001FF53A /* CityTagModel.swift in Sources */,
+				D027E149228540790051F6D2 /* Date+StringDateParse.swift in Sources */,
+				D027E14622853CA00051F6D2 /* WhetherDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
