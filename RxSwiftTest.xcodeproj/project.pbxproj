@@ -18,6 +18,8 @@
 		D0792BE022841794001FF53A /* CityTagDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BDF22841794001FF53A /* CityTagDataStore.swift */; };
 		D0792BE2228417C5001FF53A /* DataStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BE1228417C5001FF53A /* DataStoreProtocol.swift */; };
 		D0792BE42284F655001FF53A /* WhetherDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BE32284F655001FF53A /* WhetherDataStore.swift */; };
+		D0792BE8228506E7001FF53A /* RepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BE7228506E7001FF53A /* RepositoryProtocol.swift */; };
+		D0792BEA228508D7001FF53A /* CityTagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BE9228508D7001FF53A /* CityTagRepository.swift */; };
 		D0AA6F222282538E0081AECB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AA6F212282538E0081AECB /* AppDelegate.swift */; };
 		D0AA6F242282538E0081AECB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AA6F232282538E0081AECB /* ViewController.swift */; };
 		D0AA6F272282538E0081AECB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0AA6F252282538E0081AECB /* Main.storyboard */; };
@@ -61,6 +63,8 @@
 		D0792BDF22841794001FF53A /* CityTagDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTagDataStore.swift; sourceTree = "<group>"; };
 		D0792BE1228417C5001FF53A /* DataStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreProtocol.swift; sourceTree = "<group>"; };
 		D0792BE32284F655001FF53A /* WhetherDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhetherDataStore.swift; sourceTree = "<group>"; };
+		D0792BE7228506E7001FF53A /* RepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryProtocol.swift; sourceTree = "<group>"; };
+		D0792BE9228508D7001FF53A /* CityTagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTagRepository.swift; sourceTree = "<group>"; };
 		D0AA6F1E2282538E0081AECB /* RxSwiftTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSwiftTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0AA6F212282538E0081AECB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0AA6F232282538E0081AECB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +186,23 @@
 			path = DataStore;
 			sourceTree = "<group>";
 		};
+		D0792BE52285069E001FF53A /* DomainLayer */ = {
+			isa = PBXGroup;
+			children = (
+				D0792BE6228506C5001FF53A /* Repository */,
+			);
+			path = DomainLayer;
+			sourceTree = "<group>";
+		};
+		D0792BE6228506C5001FF53A /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				D0792BE7228506E7001FF53A /* RepositoryProtocol.swift */,
+				D0792BE9228508D7001FF53A /* CityTagRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		D0AA6F152282538E0081AECB = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +228,7 @@
 		D0AA6F202282538E0081AECB /* RxSwiftTest */ = {
 			isa = PBXGroup;
 			children = (
+				D0792BE52285069E001FF53A /* DomainLayer */,
 				D0792BD92284140A001FF53A /* Parameters */,
 				D0792BCF22840E19001FF53A /* DataLayer */,
 				D0AA6F212282538E0081AECB /* AppDelegate.swift */,
@@ -249,6 +271,7 @@
 				D0AA6F1B2282538E0081AECB /* Frameworks */,
 				D0AA6F1C2282538E0081AECB /* Resources */,
 				1A358939D759AD21FA91B961 /* [CP] Embed Pods Frameworks */,
+				D0792BEB22850A21001FF53A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -429,6 +452,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D0792BEB22850A21001FF53A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n${PODS_ROOT}/SwiftLint/swiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		D2F9BF2971C316DF6F3E541A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -462,12 +502,14 @@
 				D0792BE42284F655001FF53A /* WhetherDataStore.swift in Sources */,
 				D0AA6F242282538E0081AECB /* ViewController.swift in Sources */,
 				D0792BD8228413F4001FF53A /* CityTagRequest.swift in Sources */,
+				D0792BE8228506E7001FF53A /* RepositoryProtocol.swift in Sources */,
 				D0792BD3228410AC001FF53A /* APIRequestProtocol.swift in Sources */,
 				D0792BDD22841519001FF53A /* WhetherRequest.swift in Sources */,
 				D0792BD6228413C3001FF53A /* XMLDataParser.swift in Sources */,
 				D0792BE022841794001FF53A /* CityTagDataStore.swift in Sources */,
 				D0AA6F222282538E0081AECB /* AppDelegate.swift in Sources */,
 				D0792BDB22841428001FF53A /* Parameters.swift in Sources */,
+				D0792BEA228508D7001FF53A /* CityTagRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,10 +15,10 @@ import RxSwift
 struct CityTagRequest: APIRequest {
     typealias Response = XML.Accessor
     
-    var reqURL: String = WTApi.EndPoint.LIVEDOOR_WEATHER.rawValue
+    var reqURL: String = WTApi.EndPoint.liveDoorWeather.rawValue
     
     var path: String {
-        return WTApi.WhetherPath.CITY_TAGS_PATH.rawValue
+        return WTApi.WhetherPath.cityTagsPath.rawValue
     }
     
     var dataParser: DataParser {

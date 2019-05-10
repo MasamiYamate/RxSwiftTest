@@ -9,6 +9,7 @@ target 'RxSwiftTest' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'SwiftyJSON'
+  pod 'SwiftLint'
   pod 'APIKit'
   pod 'SwiftyXMLParser', :git => 'https://github.com/yahoojapan/SwiftyXMLParser.git'
 

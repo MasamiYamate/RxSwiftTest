@@ -12,12 +12,12 @@ class WTApi {
     //APIのエンドポイント群
     enum EndPoint: String {
         //livedoorのお天気APIの親エンドポイント
-        case LIVEDOOR_WEATHER = "http://weather.livedoor.com/"
+        case liveDoorWeather = "http://weather.livedoor.com/"
     }
     
     enum WhetherPath: String {
-        case CITY_TAGS_PATH = "forecast/rss/primary_area.xml"
-        case WHETHER_PATH = "forecast/webservice/json/v1"
+        case cityTagsPath = "forecast/rss/primary_area.xml"
+        case whetherPath = "forecast/webservice/json/v1"
     }
     
 }

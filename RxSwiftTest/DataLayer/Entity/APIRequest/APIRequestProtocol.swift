@@ -14,7 +14,7 @@ import RxCocoa
 import RxSwift
 
 protocol APIRequest: Request {
-    var prms: [String:Any] {get set}
+    var prms : [String:Any] {get set}
     var reqURL: String {get set}
     var reqMethod: HTTPMethod {get set}
 }

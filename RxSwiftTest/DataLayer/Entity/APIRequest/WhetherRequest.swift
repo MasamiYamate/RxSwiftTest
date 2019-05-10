@@ -13,10 +13,10 @@ import SwiftyJSON
 struct WhetherRequest: APIRequest {
     typealias Response = JSON
     
-    var reqURL: String = WTApi.EndPoint.LIVEDOOR_WEATHER.rawValue
+    var reqURL: String = WTApi.EndPoint.liveDoorWeather.rawValue
     
     var path: String {
-        return WTApi.WhetherPath.WHETHER_PATH.rawValue
+        return WTApi.WhetherPath.whetherPath.rawValue
     }
     
     var prms: [String : Any] = [:]
