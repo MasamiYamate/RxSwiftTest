@@ -27,7 +27,7 @@ struct WhetherRequest: APIRequest {
         prms["city"] = id
     }
     
-    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> WhetherRequest.Response {
+    func response(from object: Any, urlResponse: HTTPURLResponse) throws -> JSON {
         return JSON(object)
     }
     

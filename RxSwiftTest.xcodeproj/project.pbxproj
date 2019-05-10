@@ -17,6 +17,7 @@
 		D0792BDD22841519001FF53A /* WhetherRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BDC22841519001FF53A /* WhetherRequest.swift */; };
 		D0792BE022841794001FF53A /* CityTagDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BDF22841794001FF53A /* CityTagDataStore.swift */; };
 		D0792BE2228417C5001FF53A /* DataStoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BE1228417C5001FF53A /* DataStoreProtocol.swift */; };
+		D0792BE42284F655001FF53A /* WhetherDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BE32284F655001FF53A /* WhetherDataStore.swift */; };
 		D0AA6F222282538E0081AECB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AA6F212282538E0081AECB /* AppDelegate.swift */; };
 		D0AA6F242282538E0081AECB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AA6F232282538E0081AECB /* ViewController.swift */; };
 		D0AA6F272282538E0081AECB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0AA6F252282538E0081AECB /* Main.storyboard */; };
@@ -59,6 +60,7 @@
 		D0792BDC22841519001FF53A /* WhetherRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhetherRequest.swift; sourceTree = "<group>"; };
 		D0792BDF22841794001FF53A /* CityTagDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTagDataStore.swift; sourceTree = "<group>"; };
 		D0792BE1228417C5001FF53A /* DataStoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreProtocol.swift; sourceTree = "<group>"; };
+		D0792BE32284F655001FF53A /* WhetherDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhetherDataStore.swift; sourceTree = "<group>"; };
 		D0AA6F1E2282538E0081AECB /* RxSwiftTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSwiftTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0AA6F212282538E0081AECB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0AA6F232282538E0081AECB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			children = (
 				D0792BDF22841794001FF53A /* CityTagDataStore.swift */,
 				D0792BE1228417C5001FF53A /* DataStoreProtocol.swift */,
+				D0792BE32284F655001FF53A /* WhetherDataStore.swift */,
 			);
 			path = DataStore;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0792BE2228417C5001FF53A /* DataStoreProtocol.swift in Sources */,
+				D0792BE42284F655001FF53A /* WhetherDataStore.swift in Sources */,
 				D0AA6F242282538E0081AECB /* ViewController.swift in Sources */,
 				D0792BD8228413F4001FF53A /* CityTagRequest.swift in Sources */,
 				D0792BD3228410AC001FF53A /* APIRequestProtocol.swift in Sources */,
