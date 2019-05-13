@@ -11,6 +11,12 @@ import SwiftyXMLParser
 
 //全国の地域名、エリア名を保持するオブジェクト
 class CityTagModels: NSObject {
+    
+    enum CityTagModelsError: Error {
+        case notFound(String)
+        case cast(String)
+    }
+    
     //Dictionaryでは順番が担保されないため
     //Area表記は別の配列として保持する
     private(set) var areas: [String] = []
@@ -22,7 +28,7 @@ class CityTagModels: NSObject {
             //pref配下に各地域名などが含まれる
             guard let areaName: String = child.attributes["title"] else {
                 //エリア名称が取得できない場合はNSErrorを
-                throw NSError(domain: "CityTagModels Not found area name", code: -1, userInfo: nil)
+                throw CityTagModelsError.notFound("CityTagModels Not found area name")
             }
             areas.append(areaName)
             var tmpModels: [CityTagModel] = []
@@ -46,7 +52,7 @@ class CityTagModels: NSObject {
         //全てのデータ処理後、名称の配列から重複値を取り除く
         let orderdSet: NSOrderedSet = NSOrderedSet(array: areas)
         guard let orderdSetArea: [String] = orderdSet.array as? [String] else {
-            throw NSError(domain: "CityTagModels orderdSetArea cast error", code: -2, userInfo: nil)
+            throw CityTagModelsError.cast("CityTagModels orderdSetArea cast error")
         }
         areas = orderdSetArea
     }

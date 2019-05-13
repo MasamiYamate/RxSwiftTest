@@ -32,6 +32,9 @@
 		D0AA6F2C228253920081AECB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0AA6F2A228253920081AECB /* LaunchScreen.storyboard */; };
 		D0AA6F37228253920081AECB /* RxSwiftTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AA6F36228253920081AECB /* RxSwiftTestTests.swift */; };
 		D0AA6F42228253920081AECB /* RxSwiftTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AA6F41228253920081AECB /* RxSwiftTestUITests.swift */; };
+		D0C618592289095B00955E6C /* TranslaterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C618582289095B00955E6C /* TranslaterProtocol.swift */; };
+		D0C6185B228909BF00955E6C /* CityTagTranslater.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C6185A228909BF00955E6C /* CityTagTranslater.swift */; };
+		D0C6185D2289124000955E6C /* WhetherTranslater.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C6185C2289124000955E6C /* WhetherTranslater.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +91,9 @@
 		D0AA6F3D228253920081AECB /* RxSwiftTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RxSwiftTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0AA6F41228253920081AECB /* RxSwiftTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftTestUITests.swift; sourceTree = "<group>"; };
 		D0AA6F43228253920081AECB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0C618582289095B00955E6C /* TranslaterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslaterProtocol.swift; sourceTree = "<group>"; };
+		D0C6185A228909BF00955E6C /* CityTagTranslater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTagTranslater.swift; sourceTree = "<group>"; };
+		D0C6185C2289124000955E6C /* WhetherTranslater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhetherTranslater.swift; sourceTree = "<group>"; };
 		F6413E7E7C359D579F8A1779 /* Pods-RxSwiftTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftTest.release.xcconfig"; path = "Target Support Files/Pods-RxSwiftTest/Pods-RxSwiftTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -207,6 +213,7 @@
 		D0792BE52285069E001FF53A /* DomainLayer */ = {
 			isa = PBXGroup;
 			children = (
+				D0C61856228908C900955E6C /* UseCase */,
 				D0792BEE22851F44001FF53A /* Model */,
 				D0792BE6228506C5001FF53A /* Repository */,
 			);
@@ -288,6 +295,24 @@
 				D0AA6F43228253920081AECB /* Info.plist */,
 			);
 			path = RxSwiftTestUITests;
+			sourceTree = "<group>";
+		};
+		D0C61856228908C900955E6C /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				D0C618572289093E00955E6C /* Translater */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		D0C618572289093E00955E6C /* Translater */ = {
+			isa = PBXGroup;
+			children = (
+				D0C618582289095B00955E6C /* TranslaterProtocol.swift */,
+				D0C6185A228909BF00955E6C /* CityTagTranslater.swift */,
+				D0C6185C2289124000955E6C /* WhetherTranslater.swift */,
+			);
+			path = Translater;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -538,12 +563,15 @@
 				D0792BD3228410AC001FF53A /* APIRequestProtocol.swift in Sources */,
 				D0792BDD22841519001FF53A /* WhetherRequest.swift in Sources */,
 				D0792BD6228413C3001FF53A /* XMLDataParser.swift in Sources */,
+				D0C6185D2289124000955E6C /* WhetherTranslater.swift in Sources */,
 				D0792BE022841794001FF53A /* CityTagDataStore.swift in Sources */,
 				D0AA6F222282538E0081AECB /* AppDelegate.swift in Sources */,
 				D0792BDB22841428001FF53A /* Parameters.swift in Sources */,
 				D0792BEA228508D7001FF53A /* CityTagRepository.swift in Sources */,
+				D0C618592289095B00955E6C /* TranslaterProtocol.swift in Sources */,
 				D0792BED22851AED001FF53A /* WhetherRepository.swift in Sources */,
 				D0792BF022851FA0001FF53A /* CityTagModel.swift in Sources */,
+				D0C6185B228909BF00955E6C /* CityTagTranslater.swift in Sources */,
 				D027E149228540790051F6D2 /* Date+StringDateParse.swift in Sources */,
 				D027E14622853CA00051F6D2 /* WhetherDataModel.swift in Sources */,
 			);
