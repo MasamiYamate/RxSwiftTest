@@ -16,24 +16,24 @@ class CityTagRepository: RepositoryProtocol {
     
     typealias DataStoreType = CityTagDataStore
     
-    var subject: PublishSubject<XML.Accessor> {
-        return PublishSubject<XML.Accessor>()
+    private var subject: PublishSubject<XML.Accessor> = PublishSubject<XML.Accessor>()
+    var observable: Observable<Output> {
+        return subject
     }
+
+    var dataStore: CityTagDataStore
     
-    var dataStore: CityTagDataStore {
-        return CityTagDataStore()
-    }
-    
-    private var disponsable: Disposable?
+    private(set) var disponsable: Disposable?
     
     init () {
+        dataStore = CityTagDataStore()
         //init時にイベントの購読を開始させる
         self.setSubscription()
     }
 
     //購読開始のイベント
     func setSubscription() {
-        disponsable = dataStore.subject.subscribe(onNext: {value in
+        disponsable = dataStore.observable.subscribe(onNext: {value in
             self.subject.onNext(value)
         }, onError: { error in
             self.subject.onError(error)
@@ -44,4 +44,8 @@ class CityTagRepository: RepositoryProtocol {
         })
     }
     
+    /// データリクエストのメソッド
+    func request () {
+        dataStore.request()
+    }
 }

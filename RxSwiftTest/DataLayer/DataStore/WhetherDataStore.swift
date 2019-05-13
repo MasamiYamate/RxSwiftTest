@@ -16,9 +16,8 @@ struct WhetherDataStore: DataStoreProtocol {
     
     typealias Output = JSON
     
-    var subject: PublishSubject<JSON> {
-        return PublishSubject<JSON>()
-    }
+    private var subject: PublishSubject<Output> = PublishSubject<Output>()
+    var observable: Observable<Output> { return subject }
 
     var searchId: String = ""
     

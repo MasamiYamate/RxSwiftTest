@@ -17,12 +17,11 @@ import RxSwift
 /// livedoor天気情報の一次細分区定義表のDataStore
 struct CityTagDataStore: DataStoreProtocol {
 
-    typealias Output = CityTagRequest.Response
+    typealias Output = XML.Accessor
     
-    var subject: PublishSubject<XML.Accessor> {
-        return PublishSubject<XML.Accessor>()
-    }
-    
+    private var subject: PublishSubject<Output> = PublishSubject<XML.Accessor>()
+    var observable: Observable<Output> { return subject }
+
     func request() {
         let cityTagReq: CityTagRequest = CityTagRequest.init()
         Session.send(cityTagReq) { result in

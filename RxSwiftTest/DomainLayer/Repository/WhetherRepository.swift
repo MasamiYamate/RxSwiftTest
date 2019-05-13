@@ -12,18 +12,18 @@ import RxCocoa
 import RxSwift
 
 class WhetherRepository: RepositoryProtocol {
-    
     typealias Output = JSON
-    
     typealias DataStoreType = WhetherDataStore
     
-    var subject: PublishSubject<JSON> {
-        return PublishSubject<JSON>()
+    private var subject: PublishSubject<Output> = PublishSubject<Output>()
+
+    var observable: Observable<Output> {
+        return subject
     }
     
-    var dataStore: WhetherDataStore
+    var dataStore: DataStoreType
     
-    private var disponsable: Disposable?
+    private(set) var disponsable: Disposable?
     
     init (cityId: String) {
         //DataStoreの初期化
@@ -34,7 +34,7 @@ class WhetherRepository: RepositoryProtocol {
     
     //購読開始のイベント
     func setSubscription() {
-        disponsable = dataStore.subject.subscribe(onNext: { value in
+        disponsable = dataStore.observable.subscribe(onNext: { value in
             self.subject.onNext(value)
         }, onError: { error in
             self.subject.onError(error)
@@ -43,6 +43,10 @@ class WhetherRepository: RepositoryProtocol {
         }, onDisposed: {
             self.subject.dispose()
         })
+    }
+    
+    func request () {
+        dataStore.request()
     }
     
 }

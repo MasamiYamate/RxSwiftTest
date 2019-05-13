@@ -15,13 +15,13 @@ import RxDataSources
 class CityTagTranslater: TranslaterProtocol {
     
     typealias Input = XML.Accessor
-    typealias Output = Observable<[SectionModel<String, CityTagModel>]>
+    typealias Output = [SectionModel<String, CityTagModel>]
     
     enum CityTagTranslaterError: Error {
         case notFound(String)
     }
     
-    func translate(_ value: XML.Accessor) throws -> Observable<[SectionModel<String, CityTagModel>]> {
+    func translate(_ value: XML.Accessor) throws -> [SectionModel<String, CityTagModel>] {
         guard let rss: XML.Element = value.element?.childElements[0] else {
             throw CityTagTranslaterError.notFound("CityTagTranslater Not found rss")
         }
@@ -53,13 +53,13 @@ class CityTagTranslater: TranslaterProtocol {
         return getAreaSectionModels(areas: cityData.areas, models: cityData.models)
     }
     
-    private func getAreaSectionModels (areas: [String], models setModels: [String: [CityTagModel]]) -> Observable<[SectionModel<String, CityTagModel>]> {
+    private func getAreaSectionModels (areas: [String], models setModels: [String: [CityTagModel]]) -> [SectionModel<String, CityTagModel>] {
         var res: [SectionModel<String, CityTagModel>] = []
         for area in areas {
             let models: [CityTagModel] = setModels[area] ?? []
             res.append(SectionModel(model: area, items: models))
         }
-        return Observable.just(res)
+        return res
     }
 
 }
