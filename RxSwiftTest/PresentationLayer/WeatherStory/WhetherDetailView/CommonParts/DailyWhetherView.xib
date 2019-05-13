@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DailyWhetherView" customModule="WhetherTest" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="80"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dateLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gm4-a9-qJ7">
+                    <rect key="frame" x="4" y="4" width="92" height="13.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jtm-Gf-u3p">
+                    <rect key="frame" x="32" y="21.5" width="36.5" height="36.5"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Jtm-Gf-u3p" secondAttribute="height" multiplier="1:1" id="tmn-nc-fK3"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="temperture" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnL-kk-rn4">
+                    <rect key="frame" x="4" y="62" width="92" height="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Jtm-Gf-u3p" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="8eV-CY-prJ"/>
+                <constraint firstAttribute="trailing" secondItem="tnL-kk-rn4" secondAttribute="trailing" constant="4" id="Ait-DX-7uB"/>
+                <constraint firstItem="gm4-a9-qJ7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="4" id="FHl-3h-66H"/>
+                <constraint firstAttribute="trailing" secondItem="gm4-a9-qJ7" secondAttribute="trailing" constant="4" id="JF4-Ke-BlD"/>
+                <constraint firstAttribute="bottom" secondItem="tnL-kk-rn4" secondAttribute="bottom" constant="4" id="Kv9-su-sZI"/>
+                <constraint firstItem="Jtm-Gf-u3p" firstAttribute="top" secondItem="gm4-a9-qJ7" secondAttribute="bottom" constant="4" id="LbZ-WZ-YHl"/>
+                <constraint firstItem="tnL-kk-rn4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="4" id="ft5-NX-jT3"/>
+                <constraint firstItem="tnL-kk-rn4" firstAttribute="top" secondItem="Jtm-Gf-u3p" secondAttribute="bottom" constant="4" id="wFa-Kr-TWy"/>
+                <constraint firstItem="gm4-a9-qJ7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="4" id="xny-0x-XcF"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="dateLabel" destination="gm4-a9-qJ7" id="EqK-iB-0FN"/>
+                <outlet property="tempertureLabel" destination="tnL-kk-rn4" id="4Mh-ro-Fb9"/>
+                <outlet property="whetherIcon" destination="Jtm-Gf-u3p" id="W52-wx-GeX"/>
+            </connections>
+            <point key="canvasLocation" x="47.826086956521742" y="34.821428571428569"/>
+        </view>
+    </objects>
+</document>

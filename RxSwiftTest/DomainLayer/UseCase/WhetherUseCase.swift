@@ -1,5 +1,5 @@
 //
-//  CityTagUseCase.swift
+//  WhetherUseCase.swift
 //  RxSwiftTest
 //
 //  Created by MasamiYamate on 2019/05/13.
@@ -7,37 +7,35 @@
 //
 
 import Foundation
-import SwiftyXMLParser
+import SwiftyJSON
 import RxCocoa
 import RxSwift
-import RxDataSources
 
-class CityTagUseCase {
-    
-    // MARK: Presenterからアクセスするデータ群
-    private var tags: CityModels?
+class WhetherUseCase {
     
     // MARK: データリクエストに必要なリポジトリ
-    private let cityTagRepo: CityTagRepository = CityTagRepository()
-    private let cityTagTrans: CityTagTranslater = CityTagTranslater()
+    private var whetherRepo: WhetherRepository
+    private var whetherTrans: WhetherTranslater
     
-    private var subject: PublishSubject<[SectionModel<String, CityTagModel>]> = PublishSubject<[SectionModel<String, CityTagModel>]>()
-    var observable: Observable<[SectionModel<String, CityTagModel>]> {
+    private var subject: PublishSubject<WhetherDataModel> = PublishSubject<WhetherDataModel>()
+    var observable: Observable<WhetherDataModel> {
         return subject
     }
-   
+    
     private(set) var disponsable: Disposable?
     
     // MARK: 初期化
-    init() {
+    init(cityId useId: String) {
+        whetherRepo = WhetherRepository(cityId: useId)
+        whetherTrans = WhetherTranslater()
         setSubscription()
     }
     
     //購読開始のイベント
     private func setSubscription() {
-        disponsable = cityTagRepo.observable.subscribe(onNext: {value in
+        disponsable = whetherRepo.observable.subscribe(onNext: {value in
             do {
-                let res = try self.cityTagTrans.translate(value)
+                let res = try self.whetherTrans.translate(value)
                 self.subject.onNext(res)
             } catch {
                 self.subject.onError(error)
@@ -50,9 +48,9 @@ class CityTagUseCase {
             self.subject.dispose()
         })
     }
-    
-    func request () {
-        cityTagRepo.request()
-    }
 
+    func request () {
+        whetherRepo.request()
+    }
+    
 }

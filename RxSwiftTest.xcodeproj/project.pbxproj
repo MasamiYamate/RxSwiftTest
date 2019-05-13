@@ -25,6 +25,19 @@
 		D0792BEA228508D7001FF53A /* CityTagRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BE9228508D7001FF53A /* CityTagRepository.swift */; };
 		D0792BED22851AED001FF53A /* WhetherRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BEC22851AED001FF53A /* WhetherRepository.swift */; };
 		D0792BF022851FA0001FF53A /* CityModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BEF22851FA0001FF53A /* CityModels.swift */; };
+		D09EC93F2289580B00D47328 /* WhetherUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09EC93E2289580B00D47328 /* WhetherUseCase.swift */; };
+		D09EC955228966C300D47328 /* LoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D09EC943228966C200D47328 /* LoadingView.xib */; };
+		D09EC956228966C300D47328 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09EC944228966C200D47328 /* LoadingView.swift */; };
+		D09EC957228966C300D47328 /* LoadingViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09EC947228966C200D47328 /* LoadingViewPresenter.swift */; };
+		D09EC958228966C300D47328 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09EC948228966C200D47328 /* LoadingViewController.swift */; };
+		D09EC959228966C300D47328 /* PresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09EC949228966C200D47328 /* PresenterProtocol.swift */; };
+		D09EC95A228966C300D47328 /* DailyWhetherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D09EC94D228966C200D47328 /* DailyWhetherView.xib */; };
+		D09EC95B228966C300D47328 /* DailyWhetherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09EC94E228966C200D47328 /* DailyWhetherView.swift */; };
+		D09EC95C228966C300D47328 /* WhetherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09EC94F228966C200D47328 /* WhetherDetailViewController.swift */; };
+		D09EC95D228966C300D47328 /* WhetherDetailViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09EC950228966C200D47328 /* WhetherDetailViewPresenter.swift */; };
+		D09EC95E228966C300D47328 /* AreaSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09EC952228966C200D47328 /* AreaSelectViewController.swift */; };
+		D09EC95F228966C300D47328 /* AreaSelectViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09EC953228966C200D47328 /* AreaSelectViewPresenter.swift */; };
+		D09EC960228966C300D47328 /* Weather.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D09EC954228966C200D47328 /* Weather.storyboard */; };
 		D0AA6F222282538E0081AECB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AA6F212282538E0081AECB /* AppDelegate.swift */; };
 		D0AA6F242282538E0081AECB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AA6F232282538E0081AECB /* ViewController.swift */; };
 		D0AA6F272282538E0081AECB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0AA6F252282538E0081AECB /* Main.storyboard */; };
@@ -80,6 +93,19 @@
 		D0792BE9228508D7001FF53A /* CityTagRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTagRepository.swift; sourceTree = "<group>"; };
 		D0792BEC22851AED001FF53A /* WhetherRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhetherRepository.swift; sourceTree = "<group>"; };
 		D0792BEF22851FA0001FF53A /* CityModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModels.swift; sourceTree = "<group>"; };
+		D09EC93E2289580B00D47328 /* WhetherUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhetherUseCase.swift; sourceTree = "<group>"; };
+		D09EC943228966C200D47328 /* LoadingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingView.xib; sourceTree = "<group>"; };
+		D09EC944228966C200D47328 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		D09EC947228966C200D47328 /* LoadingViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewPresenter.swift; sourceTree = "<group>"; };
+		D09EC948228966C200D47328 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		D09EC949228966C200D47328 /* PresenterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresenterProtocol.swift; sourceTree = "<group>"; };
+		D09EC94D228966C200D47328 /* DailyWhetherView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DailyWhetherView.xib; sourceTree = "<group>"; };
+		D09EC94E228966C200D47328 /* DailyWhetherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyWhetherView.swift; sourceTree = "<group>"; };
+		D09EC94F228966C200D47328 /* WhetherDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhetherDetailViewController.swift; sourceTree = "<group>"; };
+		D09EC950228966C200D47328 /* WhetherDetailViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhetherDetailViewPresenter.swift; sourceTree = "<group>"; };
+		D09EC952228966C200D47328 /* AreaSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaSelectViewController.swift; sourceTree = "<group>"; };
+		D09EC953228966C200D47328 /* AreaSelectViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AreaSelectViewPresenter.swift; sourceTree = "<group>"; };
+		D09EC954228966C200D47328 /* Weather.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Weather.storyboard; sourceTree = "<group>"; };
 		D0AA6F1E2282538E0081AECB /* RxSwiftTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSwiftTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0AA6F212282538E0081AECB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0AA6F232282538E0081AECB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -245,6 +271,89 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		D09EC940228966C200D47328 /* PresentationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				D09EC941228966C200D47328 /* CommonView */,
+				D09EC945228966C200D47328 /* MainStory */,
+				D09EC949228966C200D47328 /* PresenterProtocol.swift */,
+				D09EC94A228966C200D47328 /* WeatherStory */,
+			);
+			path = PresentationLayer;
+			sourceTree = "<group>";
+		};
+		D09EC941228966C200D47328 /* CommonView */ = {
+			isa = PBXGroup;
+			children = (
+				D09EC942228966C200D47328 /* LoadingView */,
+			);
+			path = CommonView;
+			sourceTree = "<group>";
+		};
+		D09EC942228966C200D47328 /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				D09EC943228966C200D47328 /* LoadingView.xib */,
+				D09EC944228966C200D47328 /* LoadingView.swift */,
+			);
+			path = LoadingView;
+			sourceTree = "<group>";
+		};
+		D09EC945228966C200D47328 /* MainStory */ = {
+			isa = PBXGroup;
+			children = (
+				D09EC946228966C200D47328 /* LoadingView */,
+			);
+			path = MainStory;
+			sourceTree = "<group>";
+		};
+		D09EC946228966C200D47328 /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				D09EC947228966C200D47328 /* LoadingViewPresenter.swift */,
+				D09EC948228966C200D47328 /* LoadingViewController.swift */,
+			);
+			path = LoadingView;
+			sourceTree = "<group>";
+		};
+		D09EC94A228966C200D47328 /* WeatherStory */ = {
+			isa = PBXGroup;
+			children = (
+				D09EC94B228966C200D47328 /* WhetherDetailView */,
+				D09EC951228966C200D47328 /* AreaSuggestView */,
+				D09EC954228966C200D47328 /* Weather.storyboard */,
+			);
+			path = WeatherStory;
+			sourceTree = "<group>";
+		};
+		D09EC94B228966C200D47328 /* WhetherDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				D09EC94C228966C200D47328 /* CommonParts */,
+				D09EC94F228966C200D47328 /* WhetherDetailViewController.swift */,
+				D09EC950228966C200D47328 /* WhetherDetailViewPresenter.swift */,
+			);
+			path = WhetherDetailView;
+			sourceTree = "<group>";
+		};
+		D09EC94C228966C200D47328 /* CommonParts */ = {
+			isa = PBXGroup;
+			children = (
+				D09EC94D228966C200D47328 /* DailyWhetherView.xib */,
+				D09EC94E228966C200D47328 /* DailyWhetherView.swift */,
+			);
+			path = CommonParts;
+			sourceTree = "<group>";
+		};
+		D09EC951228966C200D47328 /* AreaSuggestView */ = {
+			isa = PBXGroup;
+			children = (
+				D09EC952228966C200D47328 /* AreaSelectViewController.swift */,
+				D09EC953228966C200D47328 /* AreaSelectViewPresenter.swift */,
+			);
+			path = AreaSuggestView;
+			sourceTree = "<group>";
+		};
 		D0AA6F152282538E0081AECB = {
 			isa = PBXGroup;
 			children = (
@@ -274,6 +383,7 @@
 				D0792BE52285069E001FF53A /* DomainLayer */,
 				D0792BD92284140A001FF53A /* Parameters */,
 				D0792BCF22840E19001FF53A /* DataLayer */,
+				D09EC940228966C200D47328 /* PresentationLayer */,
 				D0AA6F212282538E0081AECB /* AppDelegate.swift */,
 				D0AA6F232282538E0081AECB /* ViewController.swift */,
 				D0AA6F252282538E0081AECB /* Main.storyboard */,
@@ -307,6 +417,7 @@
 			children = (
 				D0C618572289093E00955E6C /* Translater */,
 				D0C6185E2289137900955E6C /* CityTagUseCase.swift */,
+				D09EC93E2289580B00D47328 /* WhetherUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -431,6 +542,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0AA6F2C228253920081AECB /* LaunchScreen.storyboard in Resources */,
+				D09EC960228966C300D47328 /* Weather.storyboard in Resources */,
+				D09EC95A228966C300D47328 /* DailyWhetherView.xib in Resources */,
+				D09EC955228966C300D47328 /* LoadingView.xib in Resources */,
 				D0AA6F29228253920081AECB /* Assets.xcassets in Resources */,
 				D0AA6F272282538E0081AECB /* Main.storyboard in Resources */,
 			);
@@ -562,16 +676,25 @@
 			files = (
 				D0C6185F2289137900955E6C /* CityTagUseCase.swift in Sources */,
 				D027E14B2285683A0051F6D2 /* WhetherForecastModel.swift in Sources */,
+				D09EC95B228966C300D47328 /* DailyWhetherView.swift in Sources */,
+				D09EC959228966C300D47328 /* PresenterProtocol.swift in Sources */,
+				D09EC95F228966C300D47328 /* AreaSelectViewPresenter.swift in Sources */,
 				D0792BE2228417C5001FF53A /* DataStoreProtocol.swift in Sources */,
 				D0792BE42284F655001FF53A /* WhetherDataStore.swift in Sources */,
 				D0AA6F242282538E0081AECB /* ViewController.swift in Sources */,
+				D09EC956228966C300D47328 /* LoadingView.swift in Sources */,
+				D09EC95C228966C300D47328 /* WhetherDetailViewController.swift in Sources */,
 				D0792BD8228413F4001FF53A /* CityTagRequest.swift in Sources */,
 				D0792BE8228506E7001FF53A /* RepositoryProtocol.swift in Sources */,
 				D0792BD3228410AC001FF53A /* APIRequestProtocol.swift in Sources */,
 				D0792BDD22841519001FF53A /* WhetherRequest.swift in Sources */,
 				D0792BD6228413C3001FF53A /* XMLDataParser.swift in Sources */,
+				D09EC95D228966C300D47328 /* WhetherDetailViewPresenter.swift in Sources */,
+				D09EC958228966C300D47328 /* LoadingViewController.swift in Sources */,
 				D0C6185D2289124000955E6C /* WhetherTranslater.swift in Sources */,
+				D09EC93F2289580B00D47328 /* WhetherUseCase.swift in Sources */,
 				D0792BE022841794001FF53A /* CityTagDataStore.swift in Sources */,
+				D09EC957228966C300D47328 /* LoadingViewPresenter.swift in Sources */,
 				D0AA6F222282538E0081AECB /* AppDelegate.swift in Sources */,
 				D0792BDB22841428001FF53A /* Parameters.swift in Sources */,
 				D0792BEA228508D7001FF53A /* CityTagRepository.swift in Sources */,
@@ -580,6 +703,7 @@
 				D0792BF022851FA0001FF53A /* CityModels.swift in Sources */,
 				D0C6185B228909BF00955E6C /* CityTagTranslater.swift in Sources */,
 				D027E149228540790051F6D2 /* Date+StringDateParse.swift in Sources */,
+				D09EC95E228966C300D47328 /* AreaSelectViewController.swift in Sources */,
 				D027E14622853CA00051F6D2 /* WhetherDataModel.swift in Sources */,
 				D0C618612289300100955E6C /* CityTagModel.swift in Sources */,
 			);
