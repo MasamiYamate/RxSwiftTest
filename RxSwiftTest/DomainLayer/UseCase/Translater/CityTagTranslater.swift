@@ -10,30 +10,24 @@ import Foundation
 import SwiftyXMLParser
 import RxCocoa
 import RxSwift
+import RxDataSources
 
 class CityTagTranslater: TranslaterProtocol {
+    
     typealias Input = XML.Accessor
-    typealias Output = CityTagModels
+    typealias Output = Observable<[SectionModel<String, CityTagModel>]>
     
     enum CityTagTranslaterError: Error {
         case notFound(String)
     }
     
-    var subject: PublishSubject<CityTagModels> {
-        return PublishSubject<CityTagModels>()
-    }
-    
-    func translate(_ value: XML.Accessor) {
+    func translate(_ value: XML.Accessor) throws -> Observable<[SectionModel<String, CityTagModel>]> {
         guard let rss: XML.Element = value.element?.childElements[0] else {
-            let err = CityTagTranslaterError.notFound("CityTagTranslater Not found rss")
-            subject.onError(err)
-            return
+            throw CityTagTranslaterError.notFound("CityTagTranslater Not found rss")
         }
         //index out of range対策で、念のためindexの個数確認を行う
         if rss.childElements.count == 0 {
-            let err = CityTagTranslaterError.notFound("CityTagTranslater Not found channel")
-            subject.onError(err)
-            return
+            throw CityTagTranslaterError.notFound("CityTagTranslater Not found channel")
         }
         let channel: XML.Element = rss.childElements[0]
         var tmpAllArea: XML.Element?
@@ -43,17 +37,29 @@ class CityTagTranslater: TranslaterProtocol {
         }
         
         guard let allArea: XML.Element = tmpAllArea else {
-            let err = CityTagTranslaterError.notFound("CityTagTranslater Not found allArea")
-            subject.onError(err)
-            return
+            throw CityTagTranslaterError.notFound("CityTagTranslater Not found allArea")
         }
         
+        var tmpCitydata: CityModels?
         do {
-            let models = try CityTagModels.init(xml: allArea)
-            subject.onNext(models)
+            tmpCitydata = try CityModels.init(xml: allArea)
         } catch {
-            subject.onError(error)
+            throw error
         }
+        
+        guard let cityData: CityModels = tmpCitydata else {
+            throw CityTagTranslaterError.notFound("CityTagTranslater Not found models")
+        }
+        return getAreaSectionModels(areas: cityData.areas, models: cityData.models)
+    }
+    
+    private func getAreaSectionModels (areas: [String], models setModels: [String: [CityTagModel]]) -> Observable<[SectionModel<String, CityTagModel>]> {
+        var res: [SectionModel<String, CityTagModel>] = []
+        for area in areas {
+            let models: [CityTagModel] = setModels[area] ?? []
+            res.append(SectionModel(model: area, items: models))
+        }
+        return Observable.just(res)
     }
 
 }

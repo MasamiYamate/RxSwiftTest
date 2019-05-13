@@ -2,68 +2,37 @@
 //  CityTagModel.swift
 //  RxSwiftTest
 //
-//  Created by MasamiYamate on 2019/05/10.
+//  Created by MasamiYamate on 2019/05/13.
 //  Copyright © 2019 MasamiYamate. All rights reserved.
 //
 
 import UIKit
 import SwiftyXMLParser
-
-//全国の地域名、エリア名を保持するオブジェクト
-class CityTagModels: NSObject {
-    
-    enum CityTagModelsError: Error {
-        case notFound(String)
-        case cast(String)
-    }
-    
-    //Dictionaryでは順番が担保されないため
-    //Area表記は別の配列として保持する
-    private(set) var areas: [String] = []
-    //Area名をKeyにAreaに紐づくCityTagModelの配列保持させる
-    private(set) var models: [String: [CityTagModel]] = [:]
-    
-    init (xml: XML.Element) throws {
-        for child in xml.childElements where child.name == "pref" {
-            //pref配下に各地域名などが含まれる
-            guard let areaName: String = child.attributes["title"] else {
-                //エリア名称が取得できない場合はNSErrorを
-                throw CityTagModelsError.notFound("CityTagModels Not found area name")
-            }
-            areas.append(areaName)
-            var tmpModels: [CityTagModel] = []
-            //pref配下のchildElementsから各地域情報を取得する
-            for prefChild in child.childElements where prefChild.name == "city" {
-                //警報情報も含まれるので、cityの場合の時だけ処理を行う
-                let tmpCityModel: CityTagModel = CityTagModel.init(xml: prefChild)
-                if !tmpCityModel.name.isEmpty && !tmpCityModel.cityId.isEmpty {
-                    tmpModels.append(tmpCityModel)
-                }
-            }
-            //地域名をKeyに各CityModelをディクショナリーにセット
-            //道南のみ複数存在しているため、既にkeyが存在する場合は
-            //既存の配列の末尾に追加する
-            if let existData: [CityTagModel] = models[areaName] {
-                models[areaName] = existData + tmpModels
-            } else {
-                models[areaName] = tmpModels
-            }
-        }
-        //全てのデータ処理後、名称の配列から重複値を取り除く
-        let orderdSet: NSOrderedSet = NSOrderedSet(array: areas)
-        guard let orderdSetArea: [String] = orderdSet.array as? [String] else {
-            throw CityTagModelsError.cast("CityTagModels orderdSetArea cast error")
-        }
-        areas = orderdSetArea
-    }
-}
+import RxDataSources
 
 class CityTagModel: NSObject {
+    enum CityTagModelError: Error {
+        case notFound(String)
+    }
+    
+    private(set) var areaName: String
     private(set) var name: String
     private(set) var cityId: String
     
-    init(xml: XML.Element) {
-        name = xml.attributes["title"] ?? ""
-        cityId = xml.attributes["id"] ?? ""
+    init(xml: XML.Element, areaName setArea: String) throws {
+        areaName = setArea
+        guard let title: String = xml.attributes["title"] else {
+            throw CityTagModelError.notFound("CityTagModel Not found title")
+        }
+        name = title
+        guard let setCityid: String = xml.attributes["id"] else {
+            throw CityTagModelError.notFound("CityTagModel Not found id")
+        }
+        cityId = setCityid
     }
+}
+
+extension CityTagModel: IdentifiableType {
+    typealias Identity = String
+    var identity: String { return cityId }
 }

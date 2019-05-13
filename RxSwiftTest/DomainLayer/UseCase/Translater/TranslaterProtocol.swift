@@ -13,8 +13,5 @@ import RxCocoa
 protocol TranslaterProtocol {
     associatedtype Input
     associatedtype Output
-    
-    var subject: PublishSubject<Output> { get }
-    
-    func translate(_ value: Input)
+    func translate(_ value: Input) throws -> Output
 }

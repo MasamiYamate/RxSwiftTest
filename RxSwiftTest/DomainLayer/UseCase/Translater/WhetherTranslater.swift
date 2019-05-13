@@ -15,12 +15,7 @@ class WhetherTranslater: TranslaterProtocol {
     typealias Input = JSON
     typealias Output = WhetherDataModel
     
-    var subject: PublishSubject<WhetherDataModel> {
-        return PublishSubject<WhetherDataModel>()
+    func translate(_ value: JSON) throws -> WhetherDataModel {
+        return WhetherDataModel(json: value)
     }
-    
-    func translate(_ value: JSON) {
-        subject.onNext(WhetherDataModel(json: value))
-    }
-    
 }
