@@ -17,7 +17,32 @@ class WhetherDetailViewPresenter: PresenterProtocol {
         return loadViewSubject
     }
     
-    init() {}
+    private let whetherDataSubject = BehaviorSubject<WhetherDataModel?>(value: nil)
+    var whetherData: Observable<WhetherDataModel?> {
+        return whetherDataSubject
+    }
+    
+    var searchCityId: String?
+    
+    private var whetherUseCase: WhetherUseCase?
+    
+    private let disposeBag = DisposeBag()
+    
+    init() {
+        setSubscription()
+    }
+    
+    func viewDidLoadTask() {
+        guard let setCityId: String = searchCityId else {
+            return
+        }
+        whetherUseCase = WhetherUseCase(cityId: setCityId)
+    }
+    
+    /// 購読のイベント登録
+    func setSubscription() {
+        
+    }
     
     func startLoading () {
         loadViewSubject.onNext(true)
