@@ -10,6 +10,7 @@ import Foundation
 import SwiftyJSON
 import RxCocoa
 import RxSwift
+import RxDataSources
 
 class WhetherTranslater: TranslaterProtocol {
     typealias Input = JSON
@@ -18,4 +19,5 @@ class WhetherTranslater: TranslaterProtocol {
     func translate(_ value: JSON) throws -> WhetherDataModel {
         return WhetherDataModel(json: value)
     }
+    
 }

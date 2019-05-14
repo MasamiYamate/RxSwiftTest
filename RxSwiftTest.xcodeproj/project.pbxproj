@@ -13,6 +13,7 @@
 		D027E14622853CA00051F6D2 /* WhetherDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D027E14522853CA00051F6D2 /* WhetherDataModel.swift */; };
 		D027E149228540790051F6D2 /* Date+StringDateParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D027E148228540790051F6D2 /* Date+StringDateParse.swift */; };
 		D027E14B2285683A0051F6D2 /* WhetherForecastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D027E14A2285683A0051F6D2 /* WhetherForecastModel.swift */; };
+		D0703F6E228AB4C400B386C5 /* WhetherDataSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0703F6D228AB4C400B386C5 /* WhetherDataSectionModel.swift */; };
 		D0792BD3228410AC001FF53A /* APIRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BD2228410AC001FF53A /* APIRequestProtocol.swift */; };
 		D0792BD6228413C3001FF53A /* XMLDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BD5228413C3001FF53A /* XMLDataParser.swift */; };
 		D0792BD8228413F4001FF53A /* CityTagRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792BD7228413F4001FF53A /* CityTagRequest.swift */; };
@@ -81,6 +82,7 @@
 		D027E14522853CA00051F6D2 /* WhetherDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhetherDataModel.swift; sourceTree = "<group>"; };
 		D027E148228540790051F6D2 /* Date+StringDateParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+StringDateParse.swift"; sourceTree = "<group>"; };
 		D027E14A2285683A0051F6D2 /* WhetherForecastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhetherForecastModel.swift; sourceTree = "<group>"; };
+		D0703F6D228AB4C400B386C5 /* WhetherDataSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhetherDataSectionModel.swift; sourceTree = "<group>"; };
 		D0792BD2228410AC001FF53A /* APIRequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestProtocol.swift; sourceTree = "<group>"; };
 		D0792BD5228413C3001FF53A /* XMLDataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLDataParser.swift; sourceTree = "<group>"; };
 		D0792BD7228413F4001FF53A /* CityTagRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTagRequest.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				D027E14522853CA00051F6D2 /* WhetherDataModel.swift */,
 				D027E14A2285683A0051F6D2 /* WhetherForecastModel.swift */,
 				D0C618602289300100955E6C /* CityTagModel.swift */,
+				D0703F6D228AB4C400B386C5 /* WhetherDataSectionModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -682,6 +685,7 @@
 				D0D1B924228A4C0F00EBC1C8 /* ObserverType+onNext.swift in Sources */,
 				D0792BE2228417C5001FF53A /* DataStoreProtocol.swift in Sources */,
 				D0792BE42284F655001FF53A /* WhetherDataStore.swift in Sources */,
+				D0703F6E228AB4C400B386C5 /* WhetherDataSectionModel.swift in Sources */,
 				D09EC956228966C300D47328 /* LoadingView.swift in Sources */,
 				D09EC95C228966C300D47328 /* WhetherDetailViewController.swift in Sources */,
 				D0792BD8228413F4001FF53A /* CityTagRequest.swift in Sources */,

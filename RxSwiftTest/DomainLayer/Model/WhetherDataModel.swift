@@ -41,24 +41,27 @@ class WhetherDataModel: NSObject {
     // リクエストされたデータの地域に該当するlivedoor 天気情報のURL
     private(set) var link: String = ""
     // 予報の発表日時
-    private var publicTime: Date?
+    private(set) var publicTime: Date?
     
     // MARK: description
     // 天気概況文
-    private var guideText: String = ""
+    private(set) var guideText: String = ""
     // 概況分発表時刻
-    private var guidePublicTime: Date?
+    private(set) var guidePublicTime: Date?
     
     // MARK: forecasts
-    private var forecasts: [WhetherForecastModel] = []
+    private(set) var forecasts: [WhetherForecastModel] = []
     
     // MARK: Copyright
-    private var cpTitle: String = ""
-    private var cpLink: String = ""
-    private var cpImgUrl: String = ""
+    private(set) var cpTitle: String = ""
+    private(set) var cpLink: String = ""
+    private(set) var cpImgUrl: String = ""
     
     // MARK: provider
-    private var providers: [JSON] = []
+    private(set) var providers: [JSON] = []
+    
+    // MARK: SectionModels
+    private(set) var sectionDatas: [WhetherDataSectionModel] = []
     
     init(json: JSON) {
         super.init()
@@ -82,6 +85,7 @@ class WhetherDataModel: NSObject {
                 break
             }
         }
+        createSectionData()
     }
     
     private func setLocation (json: JSON) {
@@ -170,5 +174,31 @@ class WhetherDataModel: NSObject {
         for (_, subJson): (String, JSON) in json {
             providers.append(subJson)
         }
+    }
+    
+    private func createSectionData () {
+        sectionDatas.append(createWeatherForecastSection())
+        sectionDatas.append(createProviderSections())
+        sectionDatas.append(createCopyrightSections())
+    }
+
+    private func createWeatherForecastSection () -> WhetherDataSectionModel {
+        let contents = ContentsData(contents: guideText)
+        return WhetherDataSectionModel(headerName: "予報", items: [contents])
+    }
+    
+    private func createProviderSections () -> WhetherDataSectionModel {
+        var contentes: [ContentsData] = []
+        for provider in providers {
+            if let providerName: String = provider["name"].string {
+                contentes.append(ContentsData(contents: providerName))
+            }
+        }
+        return WhetherDataSectionModel(headerName: "気象データ 配信元", items: contentes)
+    }
+    
+    private func createCopyrightSections () -> WhetherDataSectionModel {
+        let contents = ContentsData(contents: cpTitle)
+        return WhetherDataSectionModel(headerName: "Copyright", items: [contents])
     }
 }

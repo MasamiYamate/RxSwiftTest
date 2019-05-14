@@ -1,14 +1,33 @@
-////
-////  WhetherDetailViewPresenter.swift
-////  WhetherTest
-////
-////  Created by MasamiYamate on 2019/04/10.
-////  Copyright © 2019 MasamiYamate. All rights reserved.
-////
 //
-//import UIKit
+//  WhetherDetailViewPresenter.swift
+//  WhetherTest
 //
-//class WhetherDetailViewPresenter: NSObject , PresenterProtocol {    
+//  Created by MasamiYamate on 2019/04/10.
+//  Copyright © 2019 MasamiYamate. All rights reserved.
+//
+
+import UIKit
+import RxCocoa
+import RxSwift
+
+class WhetherDetailViewPresenter: PresenterProtocol {
+    
+    private let loadViewSubject = BehaviorSubject(value: true)
+    var loadView: Observable<Bool> {
+        return loadViewSubject
+    }
+    
+    init() {}
+    
+    func startLoading () {
+        loadViewSubject.onNext(true)
+    }
+    
+    func stopLoading () {
+        loadViewSubject.onNext(false)
+    }
+    
+}
 //    typealias VC = WhetherDetailViewController
 //    
 //    var viewController: WhetherDetailViewController?

@@ -53,7 +53,7 @@ class CityTagTranslater: TranslaterProtocol {
                         let items = model.items + tmpModel.items
                         res[idx] = CityTagModels.init(areaName: model.areaName, models: items)
                     }
-                }else{
+                } else {
                     areaNames.append(tmpModel.areaName)
                     res.append(tmpModel)
                 }

@@ -23,7 +23,7 @@ class DailyWhetherView: UIView {
         super.init(coder: aDecoder)!
     }
     
-    private func loadNib(){
+    private func loadNib() {
         guard let view: DailyWhetherView = Bundle.main.loadNibNamed("DailyWhetherView", owner: self, options: nil)?.first as? DailyWhetherView else {
             return
         }
