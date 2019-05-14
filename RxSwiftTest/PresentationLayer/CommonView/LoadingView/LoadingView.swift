@@ -21,7 +21,7 @@ class LoadingView: UIView {
         super.init(coder: aDecoder)!
     }
     
-    private func loadNib(){
+    private func loadNib() {
         guard let view: LoadingView = Bundle.main.loadNibNamed("LoadingView", owner: self, options: nil)?.first as? LoadingView else {
             return
         }
@@ -30,21 +30,27 @@ class LoadingView: UIView {
         self.addSubview(view)
     }
     
-    func close (complete: (() -> Void)?) {
+    func isLoading(_ flg: Bool) {
+        if flg {
+            open()
+        } else {
+            close()
+        }
+    }
+    
+    private func close () {
         UIView.animate(withDuration: 0.5, animations: {
             self.alpha = 0.0
         }, completion: { _ in
             self.isHidden = true
-            complete?()
         })
     }
     
-    func open (complete: (() -> Void)?) {
+    private func open () {
         self.isHidden = false
         UIView.animate(withDuration: 0.5, animations: {
             self.alpha = 1.0
         }, completion: {_ in
-            complete?()
         })
     }
 }

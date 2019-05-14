@@ -8,6 +8,9 @@
 
 import UIKit
 import SwiftyXMLParser
+import RxCocoa
+import RxSwift
+import RxDataSources
 
 //全国の地域名、エリア名を保持するオブジェクト
 struct CityTagModels {
@@ -17,15 +20,15 @@ struct CityTagModels {
     }
     
     private(set) var areaName: String
-    private(set) var items: [CityTagModel]
+    private(set) var items: [CityTagModel] = []
     
     init (xml: XML.Element) throws {
         //pref配下に各地域名などが含まれる
-        guard let areaName: String = xml.attributes["title"] else {
+        guard let setAreaName: String = xml.attributes["title"] else {
             //エリア名称が取得できない場合はNSErrorを
             throw CityModelsError.notFound("CityTagModels Not found area name")
         }
-    
+        areaName = setAreaName
         //pref配下のchildElementsから各地域情報を取得する
         for prefChild in xml.childElements where prefChild.name == "city" {
             //警報情報も含まれるので、cityの場合の時だけ処理を行う
@@ -38,9 +41,19 @@ struct CityTagModels {
         }
     }
     
-    init (areaName setAreaName: String , models setModels: [CityTagModel]) {
+    init (areaName setAreaName: String, models setModels: [CityTagModel]) {
         areaName = setAreaName
         items = setModels
+    }
+    
+}
+
+extension CityTagModels: SectionModelType {
+    typealias Item = CityTagModel
+    
+    init(original: CityTagModels, items: [CityTagModel]) {
+        self = original
+        self.items = items
     }
     
 }

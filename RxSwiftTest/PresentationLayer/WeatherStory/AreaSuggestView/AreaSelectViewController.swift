@@ -16,91 +16,79 @@ import RxDataSources
 class AreaSelectViewController: UIViewController {
 
     @IBOutlet weak var areaSelectTableView: UITableView!
+    
+    let presenter = AreaSelectViewPresenter()
+    
+    var loadingView: LoadingView?
+    
+    var tableviewDataSource: RxTableViewSectionedReloadDataSource<CityTagModels>?
+    
+    private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //UIの初期化
+        setLoadingView()
+        //delegateの設定
+        areaSelectTableView.rx.setDelegate(self).disposed(by: disposeBag)
+        //DataSourceの初期化
+        setDataSource()
+        setSubscription()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.startLoading()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter.requestCityTagsData()
+    }
+    
+    // MARK: 初期化メソッド
+    //購読の開始
+    func setSubscription() {
+        //LoadingViewの初期化
+        let loadviewDisposable = presenter.loadView.subscribe(onNext: {value in
+            self.loadingView?.isLoading(value)
+        })
+        disposeBag.insert(loadviewDisposable)
+        //TableViewの初期化
+        if tableviewDataSource != nil {
+            presenter.cityTags.bind(to: areaSelectTableView.rx.items(dataSource: tableviewDataSource!)).disposed(by: disposeBag)
+        }
+    }
+    
+    /// TableViewのDataSourceを生成します
+    func setDataSource() {
+        tableviewDataSource = RxTableViewSectionedReloadDataSource<CityTagModels>(configureCell: {( _: TableViewSectionedDataSource<CityTagModels>, _: UITableView, _: IndexPath, model: CityTagModel) -> UITableViewCell in
+            //セルの生成
+            let cell = UITableViewCell()
+            cell.accessoryType = .disclosureIndicator
+            cell.textLabel?.text = model.name
+            return cell
+        }, titleForHeaderInSection: {dataSource, index in
+            return dataSource.sectionModels[index].areaName
+        })
+    }
+    
+    /// LoadingViewのセットアップ
+    func setLoadingView () {
+        let rect = UIScreen.main.bounds
+        loadingView = LoadingView(frame: rect)
+        if loadingView != nil {
+            view.addSubview(loadingView!)
+        }
+    }
+
+}
+
+extension AreaSelectViewController: UITableViewDelegate {
+
+    //headerの高さ指定
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40.0
     }
     
 }
-//
-//    // MARK: 初期化メソッド群
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        presenter.viewDidLoadTask(self)
-//    }
-//
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        setupDelegate()
-//    }
-//
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        areaSelectTableView.reloadData()
-//    }
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let detailVc: WhetherDetailViewController = segue.destination as? WhetherDetailViewController {
-//            guard let tmpCityId: String = sender as? String else {
-//                return
-//            }
-//            detailVc.presenter.useCityId = tmpCityId
-//        }
-//    }
-//
-//    func setupDelegate () {
-//        areaSelectTableView.delegate = self
-//        areaSelectTableView.dataSource = self
-//    }
-//
-//    // MARK: 画面遷移イベント
-//    /// 天気詳細画面へ遷移
-//    ///
-//    /// - Parameter cityId: 詳細の天気を見たい都市のCityId
-//    func jumpToWhetherDetailView (_ cityId: String) {
-//        self.performSegue(withIdentifier: "AreaSelectViewToWhetherDetailView", sender: cityId)
-//    }
-//
-//}
-//
-//extension AreaSelectViewController: UITableViewDataSource {
-//
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return presenter.getTotalSectionCount()
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 40.0
-//    }
-//
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return presenter.getSectionTitle(section)
-//    }
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return presenter.getTotalCityCount(section)
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = UITableViewCell()
-//        cell.accessoryType = .disclosureIndicator
-//        cell.textLabel?.text = ""
-//        if let model: CityModel = presenter.getCityModel(indexPath) {
-//            cell.textLabel?.text = model.name
-//        }
-//        return cell
-//    }
-//
-//}
-//
-//extension AreaSelectViewController: UITableViewDelegate {
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if let model: CityModel = presenter.getCityModel(indexPath) {
-//            jumpToWhetherDetailView(model.id)
-//        }
-//        tableView.deselectRow(at: indexPath, animated: true)
-//    }
-//
-//}
