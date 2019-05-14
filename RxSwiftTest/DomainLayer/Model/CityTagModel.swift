@@ -10,7 +10,7 @@ import UIKit
 import SwiftyXMLParser
 import RxDataSources
 
-class CityTagModel: NSObject {
+struct CityTagModel {
     enum CityTagModelError: Error {
         case notFound(String)
     }

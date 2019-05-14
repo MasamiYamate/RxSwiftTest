@@ -15,13 +15,13 @@ import RxDataSources
 class CityTagTranslater: TranslaterProtocol {
     
     typealias Input = XML.Accessor
-    typealias Output = [SectionModel<String, CityTagModel>]
+    typealias Output = [CityTagModels]
     
     enum CityTagTranslaterError: Error {
         case notFound(String)
     }
     
-    func translate(_ value: XML.Accessor) throws -> [SectionModel<String, CityTagModel>] {
+    func translate(_ value: XML.Accessor) throws -> [CityTagModels] {
         guard let rss: XML.Element = value.element?.childElements[0] else {
             throw CityTagTranslaterError.notFound("CityTagTranslater Not found rss")
         }
@@ -39,25 +39,25 @@ class CityTagTranslater: TranslaterProtocol {
         guard let allArea: XML.Element = tmpAllArea else {
             throw CityTagTranslaterError.notFound("CityTagTranslater Not found allArea")
         }
-        
-        var tmpCitydata: CityModels?
-        do {
-            tmpCitydata = try CityModels.init(xml: allArea)
-        } catch {
-            throw error
-        }
-        
-        guard let cityData: CityModels = tmpCitydata else {
-            throw CityTagTranslaterError.notFound("CityTagTranslater Not found models")
-        }
-        return getAreaSectionModels(areas: cityData.areas, models: cityData.models)
+        return getAreaModels(xml: allArea)
     }
     
-    private func getAreaSectionModels (areas: [String], models setModels: [String: [CityTagModel]]) -> [SectionModel<String, CityTagModel>] {
-        var res: [SectionModel<String, CityTagModel>] = []
-        for area in areas {
-            let models: [CityTagModel] = setModels[area] ?? []
-            res.append(SectionModel(model: area, items: models))
+    private func getAreaModels (xml: XML.Element) -> [CityTagModels] {
+        var areaNames: [String] = []
+        var res: [CityTagModels] = []
+        for child in xml.childElements where child.name == "pref" {
+            if let tmpModel: CityTagModels = try? CityTagModels(xml: child) {
+                //道南のみ重複値があるため既に道南処理済みの場合は既存のCityModelsのmodelsに追加する
+                if areaNames.firstIndex(of: tmpModel.areaName) != nil {
+                    for (idx, model) in res.enumerated() where model.areaName == tmpModel.areaName {
+                        let items = model.items + tmpModel.items
+                        res[idx] = CityTagModels.init(areaName: model.areaName, models: items)
+                    }
+                }else{
+                    areaNames.append(tmpModel.areaName)
+                    res.append(tmpModel)
+                }
+            }
         }
         return res
     }

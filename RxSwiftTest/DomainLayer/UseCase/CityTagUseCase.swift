@@ -15,14 +15,14 @@ import RxDataSources
 class CityTagUseCase {
     
     // MARK: Presenterからアクセスするデータ群
-    private var tags: CityModels?
+    private var tags: CityTagModels?
     
     // MARK: データリクエストに必要なリポジトリ
     private let cityTagRepo: CityTagRepository = CityTagRepository()
     private let cityTagTrans: CityTagTranslater = CityTagTranslater()
     
-    private var subject: PublishSubject<[SectionModel<String, CityTagModel>]> = PublishSubject<[SectionModel<String, CityTagModel>]>()
-    var observable: Observable<[SectionModel<String, CityTagModel>]> {
+    private var subject: PublishSubject<[CityTagModels]> = PublishSubject<[CityTagModels]>()
+    var observable: Observable<[CityTagModels]> {
         return subject
     }
    
