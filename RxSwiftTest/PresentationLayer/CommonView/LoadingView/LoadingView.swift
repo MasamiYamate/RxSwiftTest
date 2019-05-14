@@ -22,7 +22,9 @@ class LoadingView: UIView {
     }
     
     private func loadNib(){
-        let view = Bundle.main.loadNibNamed("LoadingView", owner: self, options: nil)?.first as! LoadingView
+        guard let view: LoadingView = Bundle.main.loadNibNamed("LoadingView", owner: self, options: nil)?.first as? LoadingView else {
+            return
+        }
         view.frame = self.bounds
         view.loadingCircle = loadingCircle
         self.addSubview(view)

@@ -39,7 +39,6 @@
 		D09EC95F228966C300D47328 /* AreaSelectViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09EC953228966C200D47328 /* AreaSelectViewPresenter.swift */; };
 		D09EC960228966C300D47328 /* Weather.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D09EC954228966C200D47328 /* Weather.storyboard */; };
 		D0AA6F222282538E0081AECB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AA6F212282538E0081AECB /* AppDelegate.swift */; };
-		D0AA6F242282538E0081AECB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AA6F232282538E0081AECB /* ViewController.swift */; };
 		D0AA6F272282538E0081AECB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0AA6F252282538E0081AECB /* Main.storyboard */; };
 		D0AA6F29228253920081AECB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0AA6F28228253920081AECB /* Assets.xcassets */; };
 		D0AA6F2C228253920081AECB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0AA6F2A228253920081AECB /* LaunchScreen.storyboard */; };
@@ -50,6 +49,7 @@
 		D0C6185D2289124000955E6C /* WhetherTranslater.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C6185C2289124000955E6C /* WhetherTranslater.swift */; };
 		D0C6185F2289137900955E6C /* CityTagUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C6185E2289137900955E6C /* CityTagUseCase.swift */; };
 		D0C618612289300100955E6C /* CityTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C618602289300100955E6C /* CityTagModel.swift */; };
+		D0D1B924228A4C0F00EBC1C8 /* ObserverType+onNext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1B923228A4C0F00EBC1C8 /* ObserverType+onNext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,7 +108,6 @@
 		D09EC954228966C200D47328 /* Weather.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Weather.storyboard; sourceTree = "<group>"; };
 		D0AA6F1E2282538E0081AECB /* RxSwiftTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSwiftTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0AA6F212282538E0081AECB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D0AA6F232282538E0081AECB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D0AA6F262282538E0081AECB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D0AA6F28228253920081AECB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0AA6F2B228253920081AECB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -124,6 +123,7 @@
 		D0C6185C2289124000955E6C /* WhetherTranslater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhetherTranslater.swift; sourceTree = "<group>"; };
 		D0C6185E2289137900955E6C /* CityTagUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTagUseCase.swift; sourceTree = "<group>"; };
 		D0C618602289300100955E6C /* CityTagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTagModel.swift; sourceTree = "<group>"; };
+		D0D1B923228A4C0F00EBC1C8 /* ObserverType+onNext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObserverType+onNext.swift"; sourceTree = "<group>"; };
 		F6413E7E7C359D579F8A1779 /* Pods-RxSwiftTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftTest.release.xcconfig"; path = "Target Support Files/Pods-RxSwiftTest/Pods-RxSwiftTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				D027E148228540790051F6D2 /* Date+StringDateParse.swift */,
+				D0D1B923228A4C0F00EBC1C8 /* ObserverType+onNext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -274,9 +275,9 @@
 		D09EC940228966C200D47328 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				D09EC949228966C200D47328 /* PresenterProtocol.swift */,
 				D09EC941228966C200D47328 /* CommonView */,
 				D09EC945228966C200D47328 /* MainStory */,
-				D09EC949228966C200D47328 /* PresenterProtocol.swift */,
 				D09EC94A228966C200D47328 /* WeatherStory */,
 			);
 			path = PresentationLayer;
@@ -385,7 +386,6 @@
 				D0792BCF22840E19001FF53A /* DataLayer */,
 				D09EC940228966C200D47328 /* PresentationLayer */,
 				D0AA6F212282538E0081AECB /* AppDelegate.swift */,
-				D0AA6F232282538E0081AECB /* ViewController.swift */,
 				D0AA6F252282538E0081AECB /* Main.storyboard */,
 				D0AA6F28228253920081AECB /* Assets.xcassets */,
 				D0AA6F2A228253920081AECB /* LaunchScreen.storyboard */,
@@ -679,9 +679,9 @@
 				D09EC95B228966C300D47328 /* DailyWhetherView.swift in Sources */,
 				D09EC959228966C300D47328 /* PresenterProtocol.swift in Sources */,
 				D09EC95F228966C300D47328 /* AreaSelectViewPresenter.swift in Sources */,
+				D0D1B924228A4C0F00EBC1C8 /* ObserverType+onNext.swift in Sources */,
 				D0792BE2228417C5001FF53A /* DataStoreProtocol.swift in Sources */,
 				D0792BE42284F655001FF53A /* WhetherDataStore.swift in Sources */,
-				D0AA6F242282538E0081AECB /* ViewController.swift in Sources */,
 				D09EC956228966C300D47328 /* LoadingView.swift in Sources */,
 				D09EC95C228966C300D47328 /* WhetherDetailViewController.swift in Sources */,
 				D0792BD8228413F4001FF53A /* CityTagRequest.swift in Sources */,

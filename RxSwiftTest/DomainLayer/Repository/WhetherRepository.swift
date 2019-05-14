@@ -22,8 +22,8 @@ class WhetherRepository: RepositoryProtocol {
     }
     
     var dataStore: DataStoreType
-    
-    private(set) var disponsable: Disposable?
+
+    private let disposeBag = DisposeBag()
     
     init (cityId: String) {
         //DataStoreの初期化
@@ -34,7 +34,7 @@ class WhetherRepository: RepositoryProtocol {
     
     //購読開始のイベント
     func setSubscription() {
-        disponsable = dataStore.observable.subscribe(onNext: { value in
+        let disponsable = dataStore.observable.subscribe(onNext: { value in
             self.subject.onNext(value)
         }, onError: { error in
             self.subject.onError(error)
@@ -43,6 +43,7 @@ class WhetherRepository: RepositoryProtocol {
         }, onDisposed: {
             self.subject.dispose()
         })
+        disposeBag.insert(disponsable)
     }
     
     func request () {

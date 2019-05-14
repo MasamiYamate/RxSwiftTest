@@ -8,18 +8,11 @@
 
 import UIKit
 
-protocol PresenterProtocol {
-    associatedtype VC
-    
-    var viewController: VC? {get set}
-    
-}
+protocol PresenterProtocol {}
 
 extension PresenterProtocol {
     
-    mutating func viewDidLoadTask (_ vc: VC) {
-        self.viewController = vc
-    }
+    func viewDidLoadTask () {}
     
     func viewWillAppearTask () {}
     
@@ -32,7 +25,5 @@ extension PresenterProtocol {
     func viewWillDisappearTask () {}
     
     func viewDidDisappearTask () {}
-    
-    func prepareTask(for segue: UIStoryboardSegue, sender: Any?) {}
-    
+
 }

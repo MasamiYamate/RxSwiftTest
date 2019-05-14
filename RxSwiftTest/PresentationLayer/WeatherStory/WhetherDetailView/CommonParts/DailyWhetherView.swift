@@ -24,7 +24,9 @@ class DailyWhetherView: UIView {
     }
     
     private func loadNib(){
-        let view = Bundle.main.loadNibNamed("DailyWhetherView", owner: self, options: nil)?.first as! DailyWhetherView
+        guard let view: DailyWhetherView = Bundle.main.loadNibNamed("DailyWhetherView", owner: self, options: nil)?.first as? DailyWhetherView else {
+            return
+        }
         view.frame = self.bounds
         dateLabel = view.dateLabel
         whetherIcon = view.whetherIcon

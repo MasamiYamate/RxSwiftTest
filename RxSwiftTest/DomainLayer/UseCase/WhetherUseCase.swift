@@ -22,7 +22,7 @@ class WhetherUseCase {
         return subject
     }
     
-    private(set) var disponsable: Disposable?
+    private let disposeBag = DisposeBag()
     
     // MARK: 初期化
     init(cityId useId: String) {
@@ -33,7 +33,7 @@ class WhetherUseCase {
     
     //購読開始のイベント
     private func setSubscription() {
-        disponsable = whetherRepo.observable.subscribe(onNext: {value in
+        let disponsable = whetherRepo.observable.subscribe(onNext: {value in
             do {
                 let res = try self.whetherTrans.translate(value)
                 self.subject.onNext(res)
@@ -47,6 +47,7 @@ class WhetherUseCase {
         }, onDisposed: {
             self.subject.dispose()
         })
+        disposeBag.insert(disponsable)
     }
 
     func request () {

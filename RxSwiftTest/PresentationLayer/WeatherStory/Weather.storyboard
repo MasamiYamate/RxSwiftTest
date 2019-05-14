@@ -29,7 +29,7 @@
         <!--Area Select View Controller-->
         <scene sceneID="Uog-wI-vgO">
             <objects>
-                <viewController id="q32-2u-r8l" customClass="AreaSelectViewController" customModule="WhetherTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="q32-2u-r8l" customClass="AreaSelectViewController" customModule="RxSwiftTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9E0-Tc-zYJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -50,7 +50,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="drc-Tg-TKy"/>
                     <connections>
-                        <outlet property="areaSelectTableView" destination="DQp-BD-O3N" id="OJf-hr-PzB"/>
+                        <outlet property="areaSelectTableView" destination="DQp-BD-O3N" id="1EX-JT-g4o"/>
                         <segue destination="gjq-Xr-lqe" kind="show" identifier="AreaSelectViewToWhetherDetailView" id="JY7-da-Vam"/>
                     </connections>
                 </viewController>
@@ -61,7 +61,7 @@
         <!--Whether Detail View Controller-->
         <scene sceneID="Gt8-P7-Hzw">
             <objects>
-                <viewController id="gjq-Xr-lqe" customClass="WhetherDetailViewController" customModule="WhetherTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gjq-Xr-lqe" customClass="WhetherDetailViewController" customModule="RxSwiftTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gHr-sB-p8h">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

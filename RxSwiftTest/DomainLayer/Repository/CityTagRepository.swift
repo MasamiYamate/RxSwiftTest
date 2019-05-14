@@ -22,8 +22,8 @@ class CityTagRepository: RepositoryProtocol {
     }
 
     var dataStore: CityTagDataStore
-    
-    private(set) var disponsable: Disposable?
+
+    private let disposeBag = DisposeBag()
     
     init () {
         dataStore = CityTagDataStore()
@@ -33,7 +33,7 @@ class CityTagRepository: RepositoryProtocol {
 
     //購読開始のイベント
     func setSubscription() {
-        disponsable = dataStore.observable.subscribe(onNext: {value in
+        let disponsable = dataStore.observable.subscribe(onNext: {value in
             self.subject.onNext(value)
         }, onError: { error in
             self.subject.onError(error)
@@ -42,6 +42,7 @@ class CityTagRepository: RepositoryProtocol {
         }, onDisposed: {
             self.subject.dispose()
         })
+        disposeBag.insert(disponsable)
     }
     
     /// データリクエストのメソッド

@@ -26,7 +26,7 @@ class CityTagUseCase {
         return subject
     }
    
-    private(set) var disponsable: Disposable?
+    private let disposeBag = DisposeBag()
     
     // MARK: 初期化
     init() {
@@ -35,7 +35,7 @@ class CityTagUseCase {
     
     //購読開始のイベント
     private func setSubscription() {
-        disponsable = cityTagRepo.observable.subscribe(onNext: {value in
+        let disponsable = cityTagRepo.observable.subscribe(onNext: {value in
             do {
                 let res = try self.cityTagTrans.translate(value)
                 self.subject.onNext(res)
@@ -49,6 +49,7 @@ class CityTagUseCase {
         }, onDisposed: {
             self.subject.dispose()
         })
+        disposeBag.insert(disponsable)
     }
     
     func request () {

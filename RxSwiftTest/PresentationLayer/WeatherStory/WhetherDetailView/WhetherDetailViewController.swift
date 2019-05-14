@@ -23,17 +23,17 @@ class WhetherDetailViewController: UIViewController {
     
     var loadingView: LoadingView?
 
-    var presenter = WhetherDetailViewPresenter()
+    //var presenter = WhetherDetailViewPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLoadingView()
-        presenter.viewDidLoadTask(self)
+        //presenter.viewDidLoadTask(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter.viewWillAppearTask()
+        //presenter.viewWillAppearTask()
         setupDataSource()
     }
     
@@ -84,7 +84,7 @@ extension WhetherDetailViewController: UITableViewDataSource {
             return 1
         case 1:
             //情報配信元セルの件数を返却します
-            return presenter.getProviderCount()
+            return 0//presenter.getProviderCount()
         default:
             return 0
         }
@@ -111,7 +111,7 @@ extension WhetherDetailViewController: UITableViewDataSource {
     /// - Returns: UITableViewCell
     func createWeatherForecast (_ tableView: UITableView , cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = presenter.getGuideText()
+        cell.textLabel?.text = ""//presenter.getGuideText()
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.lineBreakMode = .byWordWrapping
         return cell
@@ -125,7 +125,7 @@ extension WhetherDetailViewController: UITableViewDataSource {
     /// - Returns: UITableViewCell
     func createProviderName(_ tableView: UITableView , cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = presenter.getProviderName(indexPath.row)
+        cell.textLabel?.text = ""//presenter.getProviderName(indexPath.row)
         return cell
     }
     
@@ -137,7 +137,7 @@ extension WhetherDetailViewController: UITableViewDataSource {
     /// - Returns: UITableViewCell
     func createCopyright(_ tableView: UITableView , cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = presenter.getCopyright()
+        cell.textLabel?.text = ""//presenter.getCopyright()
         return cell
     }
     

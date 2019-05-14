@@ -7,31 +7,38 @@
 //
 
 import Foundation
+import RxCocoa
+import RxSwift
 
 class LoadingViewPresenter: PresenterProtocol {
-    typealias VC = LoadingViewController
     
-    var viewController: LoadingViewController?
+    private let loadCircleAnimateSubject = BehaviorSubject(value: true)
+    var loadCircleAnimate: Observable<Bool> {
+        return loadCircleAnimateSubject
+    }
     
-    var cityTagUseCase: CityTagUseCase
+    private let viewTransitionSubject = PublishSubject<Void>()
+    var viewTransition: Observable<Void> {
+        return viewTransitionSubject
+    }
     
     // MARK: 初期化メソッド群
-    init() {
-        cityTagUseCase = CityTagUseCase()
+    init() {}
+    
+    // MARK: UIイベントなど
+    /// Loadingの開始
+    func startLoading () {
+        loadCircleAnimateSubject.onNext(true)
     }
     
-    func viewDidAppearTask() {
-        //View描画後、データ取得開始
-        getCityData()
+    /// Loadingの終了
+    func stopLoading () {
+        loadCircleAnimateSubject.onNext(false)
     }
     
-    // MARK: データのリクエストなど
-    /// Cityデータを取得する
-    func getCityData () {
-        cityTagUseCase.request({
-            //データ取得後、画面遷移させる
-            self.viewController?.jumpAreaSuggestView()
-        })
+    /// Viewの遷移
+    func nextViewTransition () {
+        viewTransitionSubject.onNext()
     }
     
 }
