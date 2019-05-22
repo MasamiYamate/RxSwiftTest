@@ -8,6 +8,11 @@ target 'RxSwiftTest' do
   # Pods for RxSwiftTest
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'RxDataSources'
+  pod 'SwiftyJSON'
+  pod 'SwiftLint'
+  pod 'APIKit'
+  pod 'SwiftyXMLParser', :git => 'https://github.com/yahoojapan/SwiftyXMLParser.git'
 
   target 'RxSwiftTestTests' do
     inherit! :search_paths
