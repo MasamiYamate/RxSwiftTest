@@ -16,5 +16,5 @@ protocol RepositoryProtocol {
     associatedtype Output
     associatedtype DataStoreType
     var dataStore: DataStoreType { get }
-    func request ()
+    func request () -> Observable<Output>
 }

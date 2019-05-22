@@ -13,5 +13,5 @@ import RxSwift
 protocol DataStoreProtocol {
     associatedtype Output
     
-    func request ()
+    func request () -> Observable<Output>
 }

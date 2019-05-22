@@ -13,13 +13,7 @@ import RxSwift
 
 class CityTagRepository: RepositoryProtocol {
     typealias Output = XML.Accessor
-    
     typealias DataStoreType = CityTagDataStore
-    
-    private var subject: PublishSubject<XML.Accessor> = PublishSubject<XML.Accessor>()
-    var observable: Observable<Output> {
-        return subject
-    }
 
     var dataStore: CityTagDataStore
 
@@ -27,26 +21,21 @@ class CityTagRepository: RepositoryProtocol {
     
     init () {
         dataStore = CityTagDataStore()
-        //init時にイベントの購読を開始させる
-        self.setSubscription()
     }
 
-    //購読開始のイベント
-    func setSubscription() {
-        let disponsable = dataStore.observable.subscribe(onNext: {value in
-            self.subject.onNext(value)
-        }, onError: { error in
-            self.subject.onError(error)
-        }, onCompleted: {
-            self.subject.onCompleted()
-        }, onDisposed: {
-            self.subject.dispose()
-        })
-        disposeBag.insert(disponsable)
-    }
-    
     /// データリクエストのメソッド
-    func request () {
-        dataStore.request()
+    func request () -> Observable<Output> {
+        return Observable<Output>.create { observable in
+            let dataStoreObservable = self.dataStore.request()
+            dataStoreObservable.subscribe(onNext: {value in
+                observable.onNext(value)
+                observable.onCompleted()
+            }, onError: { error in
+                observable.onError(error)
+            }, onCompleted: {
+                observable.onCompleted()
+            }).disposed(by: self.disposeBag)
+            return Disposables.create()
+        }
     }
 }

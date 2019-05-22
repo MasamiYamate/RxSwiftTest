@@ -12,28 +12,23 @@ import SwiftyJSON
 import RxCocoa
 import RxSwift
 
-struct WhetherDataStore: DataStoreProtocol {
-    
+struct WhetherDataStore {
+
     typealias Output = JSON
     
-    private var subject: PublishSubject<Output> = PublishSubject<Output>()
-    var observable: Observable<Output> { return subject }
-
-    var searchId: String = ""
-    
-    init(cityId: String) {
-        searchId = cityId
-    }
-    
-    func request() {
-        let whetherReq: WhetherRequest = WhetherRequest.init(cityId: searchId)
-        Session.send(whetherReq) { result in
-            switch result {
-            case .success(let res):
-                self.subject.onNext(res)
-            case .failure(let err):
-                self.subject.onError(err)
+    func request(cityId: String) -> Observable<Output> {
+        return Observable<Output>.create { observable in
+            let whetherReq: WhetherRequest = WhetherRequest.init(cityId: cityId)
+            Session.send(whetherReq) { result in
+                switch result {
+                case .success(let res):
+                    observable.onNext(res)
+                    observable.onCompleted()
+                case .failure(let err):
+                    observable.onError(err)
+                }
             }
+            return Disposables.create()
         }
     }
     

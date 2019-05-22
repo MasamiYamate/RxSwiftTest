@@ -12,11 +12,11 @@ import RxSwift
 
 class LoadingViewPresenter: PresenterProtocol {
     
-    private let loadCircleAnimateSubject = BehaviorSubject(value: true)
+    private let loadCircleAnimateSubject = BehaviorRelay(value: true)
     var loadCircleAnimate: Observable<Bool> {
-        return loadCircleAnimateSubject
+        return loadCircleAnimateSubject.asObservable()
     }
-    
+
     private let viewTransitionSubject = PublishSubject<Void>()
     var viewTransition: Observable<Void> {
         return viewTransitionSubject
@@ -28,12 +28,12 @@ class LoadingViewPresenter: PresenterProtocol {
     // MARK: UIイベントなど
     /// Loadingの開始
     func startLoading () {
-        loadCircleAnimateSubject.onNext(true)
+      //  loadCircleAnimateSubject.bindNext(true)
     }
     
     /// Loadingの終了
     func stopLoading () {
-        loadCircleAnimateSubject.onNext(false)
+      //  loadCircleAnimateSubject.bindNext(false)
     }
     
     /// Viewの遷移

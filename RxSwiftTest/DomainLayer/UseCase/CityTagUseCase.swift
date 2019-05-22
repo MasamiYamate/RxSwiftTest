@@ -14,46 +14,30 @@ import RxDataSources
 
 class CityTagUseCase {
     
-    // MARK: Presenterからアクセスするデータ群
-    private var tags: CityTagModels?
-    
     // MARK: データリクエストに必要なリポジトリ
     private let cityTagRepo: CityTagRepository = CityTagRepository()
     private let cityTagTrans: CityTagTranslater = CityTagTranslater()
-    
-    private var subject: PublishSubject<[CityTagModels]> = PublishSubject<[CityTagModels]>()
-    var observable: Observable<[CityTagModels]> {
-        return subject
-    }
-   
+
     private let disposeBag = DisposeBag()
     
-    // MARK: 初期化
-    init() {
-        setSubscription()
-    }
-    
-    //購読開始のイベント
-    private func setSubscription() {
-        let disponsable = cityTagRepo.observable.subscribe(onNext: {value in
-            do {
-                let res = try self.cityTagTrans.translate(value)
-                self.subject.onNext(res)
-            } catch {
-                self.subject.onError(error)
-            }
-        }, onError: { error in
-            self.subject.onError(error)
-        }, onCompleted: {
-            self.subject.onCompleted()
-        }, onDisposed: {
-            self.subject.dispose()
+    func request () -> Observable<[CityTagModels]> {
+        return Observable<[CityTagModels]>.create({ observable in
+            let cityTagRepoObservable = self.cityTagRepo.request()
+            cityTagRepoObservable.subscribe(onNext: { value in
+                do {
+                    let res: [CityTagModels] = try self.cityTagTrans.translate(value)
+                    observable.onNext(res)
+                    observable.onCompleted()
+                } catch {
+                    observable.onError(error)
+                }
+            }, onError: {error in
+                observable.onError(error)
+            }, onCompleted: {
+                observable.onCompleted()
+            }).disposed(by: self.disposeBag)
+            return Disposables.create()
         })
-        disposeBag.insert(disponsable)
-    }
-    
-    func request () {
-        cityTagRepo.request()
     }
 
 }

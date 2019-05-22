@@ -97,9 +97,9 @@ class WhetherForecastModel: NSObject {
         for (key, subJson): (String, JSON) in json {
             switch key {
             case ForecastJsonKey.max.rawValue:
-                maxTemp = extractionCelsius(json: subJson) ?? ""
+                maxTemp = extractionCelsius(json: subJson) ?? "-"
             case ForecastJsonKey.min.rawValue:
-                minTemp = extractionCelsius(json: subJson) ?? ""
+                minTemp = extractionCelsius(json: subJson) ?? "-"
             default:
                 break
             }

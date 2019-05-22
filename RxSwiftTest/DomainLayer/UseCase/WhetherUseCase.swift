@@ -16,42 +16,33 @@ class WhetherUseCase {
     // MARK: データリクエストに必要なリポジトリ
     private var whetherRepo: WhetherRepository
     private var whetherTrans: WhetherTranslater
-    
-    private var subject: PublishSubject<WhetherDataModel> = PublishSubject<WhetherDataModel>()
-    var observable: Observable<WhetherDataModel> {
-        return subject
-    }
-    
+
     private let disposeBag = DisposeBag()
     
     // MARK: 初期化
-    init(cityId useId: String) {
-        whetherRepo = WhetherRepository(cityId: useId)
+    init() {
+        whetherRepo = WhetherRepository()
         whetherTrans = WhetherTranslater()
-        setSubscription()
     }
     
-    //購読開始のイベント
-    private func setSubscription() {
-        let disponsable = whetherRepo.observable.subscribe(onNext: {value in
-            do {
-                let res = try self.whetherTrans.translate(value)
-                self.subject.onNext(res)
-            } catch {
-                self.subject.onError(error)
-            }
-        }, onError: { error in
-            self.subject.onError(error)
-        }, onCompleted: {
-            self.subject.onCompleted()
-        }, onDisposed: {
-            self.subject.dispose()
+    func request (cityId: String) -> Observable<WhetherDataModel> {
+        return Observable<WhetherDataModel>.create({observable in
+            let repoObservable = self.whetherRepo.request(cityId: cityId)
+            repoObservable.subscribe(onNext: { value in
+                do {
+                    let res = try self.whetherTrans.translate(value)
+                    observable.onNext(res)
+                    observable.onCompleted()
+                } catch {
+                    observable.onError(error)
+                }
+            }, onError: { error in
+                observable.onError(error)
+            }, onDisposed: {
+                observable.onCompleted()
+            }).disposed(by: self.disposeBag)
+            return Disposables.create()
         })
-        disposeBag.insert(disponsable)
-    }
-
-    func request () {
-        whetherRepo.request()
     }
     
 }

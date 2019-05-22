@@ -11,43 +11,32 @@ import SwiftyJSON
 import RxCocoa
 import RxSwift
 
-class WhetherRepository: RepositoryProtocol {
+class WhetherRepository {
     typealias Output = JSON
     typealias DataStoreType = WhetherDataStore
-    
-    private var subject: PublishSubject<Output> = PublishSubject<Output>()
-
-    var observable: Observable<Output> {
-        return subject
-    }
     
     var dataStore: DataStoreType
 
     private let disposeBag = DisposeBag()
     
-    init (cityId: String) {
+    init () {
         //DataStoreの初期化
-        dataStore = WhetherDataStore(cityId: cityId)
-        //init時にイベントの購読を開始させる
-        setSubscription()
+        dataStore = WhetherDataStore()
     }
-    
-    //購読開始のイベント
-    func setSubscription() {
-        let disponsable = dataStore.observable.subscribe(onNext: { value in
-            self.subject.onNext(value)
-        }, onError: { error in
-            self.subject.onError(error)
-        }, onCompleted: {
-            self.subject.onCompleted()
-        }, onDisposed: {
-            self.subject.dispose()
+
+    func request (cityId: String) -> Observable<Output> {
+        return Observable<Output>.create({observable in
+            let dataStoreObservable = self.dataStore.request(cityId: cityId)
+            dataStoreObservable.subscribe(onNext: {value in
+                observable.onNext(value)
+                observable.onCompleted()
+            }, onError: {error in
+                observable.onError(error)
+            }, onCompleted: {
+                observable.onCompleted()
+            }).disposed(by: self.disposeBag)
+            return Disposables.create()
         })
-        disposeBag.insert(disponsable)
-    }
-    
-    func request () {
-        dataStore.request()
     }
     
 }

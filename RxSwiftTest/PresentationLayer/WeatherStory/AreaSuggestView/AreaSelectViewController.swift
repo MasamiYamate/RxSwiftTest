@@ -30,7 +30,7 @@ class AreaSelectViewController: UIViewController {
         //UIの初期化
         setLoadingView()
         //delegateの設定
-        areaSelectTableView.rx.setDelegate(self).disposed(by: disposeBag)
+        setTableView()
         //DataSourceの初期化
         setDataSource()
         setSubscription()
@@ -46,18 +46,31 @@ class AreaSelectViewController: UIViewController {
         presenter.requestCityTagsData()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let whetherDetail: WhetherDetailViewController = segue.destination as? WhetherDetailViewController {
+            guard let tmpSetCityId: String = sender as? String else {
+                return
+            }
+            whetherDetail.presenter.searchCityId = tmpSetCityId
+        }
+    }
+    
     // MARK: 初期化メソッド
     //購読の開始
     func setSubscription() {
         //LoadingViewの初期化
-        let loadviewDisposable = presenter.loadView.subscribe(onNext: {value in
+        presenter.loadView.subscribe(onNext: {value in
             self.loadingView?.isLoading(value)
-        })
-        disposeBag.insert(loadviewDisposable)
+        }).disposed(by: disposeBag)
         //TableViewの初期化
         if tableviewDataSource != nil {
             presenter.cityTags.bind(to: areaSelectTableView.rx.items(dataSource: tableviewDataSource!)).disposed(by: disposeBag)
         }
+        //画面遷移イベントの登録
+        presenter.selectData.subscribe(onNext: {value in
+            self.jumpWhetherDetailView(setCityid: value.cityId)
+        })
+        .disposed(by: disposeBag)
     }
     
     /// TableViewのDataSourceを生成します
@@ -82,6 +95,20 @@ class AreaSelectViewController: UIViewController {
         }
     }
 
+    func setTableView() {
+        areaSelectTableView.rx.setDelegate(self).disposed(by: disposeBag)
+        areaSelectTableView.rx.itemSelected
+            .subscribe(onNext: { idx in
+                self.presenter.selectCity(index: idx)
+            })
+        .disposed(by: disposeBag)
+    }
+    
+    // MARK: 画面遷移イベント
+    func jumpWhetherDetailView (setCityid: String) {
+        performSegue(withIdentifier: "AreaSelectViewToWhetherDetailView", sender: setCityid)
+    }
+    
 }
 
 extension AreaSelectViewController: UITableViewDelegate {
@@ -90,5 +117,5 @@ extension AreaSelectViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40.0
     }
-    
+
 }

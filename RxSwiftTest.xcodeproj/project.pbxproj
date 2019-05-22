@@ -51,6 +51,7 @@
 		D0C6185F2289137900955E6C /* CityTagUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C6185E2289137900955E6C /* CityTagUseCase.swift */; };
 		D0C618612289300100955E6C /* CityTagModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C618602289300100955E6C /* CityTagModel.swift */; };
 		D0D1B924228A4C0F00EBC1C8 /* ObserverType+onNext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D1B923228A4C0F00EBC1C8 /* ObserverType+onNext.swift */; };
+		D0FA0C0A22953E1C00A6ED0E /* UIImage+WebImageGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA0C0922953E1C00A6ED0E /* UIImage+WebImageGetter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +127,7 @@
 		D0C6185E2289137900955E6C /* CityTagUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTagUseCase.swift; sourceTree = "<group>"; };
 		D0C618602289300100955E6C /* CityTagModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTagModel.swift; sourceTree = "<group>"; };
 		D0D1B923228A4C0F00EBC1C8 /* ObserverType+onNext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObserverType+onNext.swift"; sourceTree = "<group>"; };
+		D0FA0C0922953E1C00A6ED0E /* UIImage+WebImageGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+WebImageGetter.swift"; sourceTree = "<group>"; };
 		F6413E7E7C359D579F8A1779 /* Pods-RxSwiftTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftTest.release.xcconfig"; path = "Target Support Files/Pods-RxSwiftTest/Pods-RxSwiftTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -185,6 +187,7 @@
 			children = (
 				D027E148228540790051F6D2 /* Date+StringDateParse.swift */,
 				D0D1B923228A4C0F00EBC1C8 /* ObserverType+onNext.swift */,
+				D0FA0C0922953E1C00A6ED0E /* UIImage+WebImageGetter.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -706,6 +709,7 @@
 				D0792BED22851AED001FF53A /* WhetherRepository.swift in Sources */,
 				D0792BF022851FA0001FF53A /* CityTagModels.swift in Sources */,
 				D0C6185B228909BF00955E6C /* CityTagTranslater.swift in Sources */,
+				D0FA0C0A22953E1C00A6ED0E /* UIImage+WebImageGetter.swift in Sources */,
 				D027E149228540790051F6D2 /* Date+StringDateParse.swift in Sources */,
 				D09EC95E228966C300D47328 /* AreaSelectViewController.swift in Sources */,
 				D027E14622853CA00051F6D2 /* WhetherDataModel.swift in Sources */,
