@@ -50,6 +50,7 @@ class WhetherDetailViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        loadingView?.removeFromSuperview()
         loadingView = nil
         for view in whetherScrollDataView.subviews {
             view.removeFromSuperview()
@@ -88,17 +89,33 @@ class WhetherDetailViewController: UIViewController {
     }
     
     func setToDayWhether () {
-        presenter.whetherData
-            .subscribe(onNext: {value in
-                self.areaNameLabel.text = value.title
-                let toDayForecast = value.forecasts.filter { $0.dateType == WhetherForecastModel.DateType.toDay }
-                if let toDayIconImgUrl: String = toDayForecast.first?.iconImgUrl {
-                    self.toDayWhetherIcon.image = UIImage.webImage(url: toDayIconImgUrl)
-                }
-                if let maxtemp: String = toDayForecast.first?.maxTemp, let mintemp: String = toDayForecast.first?.minTemp {
-                    self.toDayTemperatureLabel.text = "\(maxtemp)℃/\(mintemp)℃"
-                }
-            }).disposed(by: disposeBag)
+        //Area名称の設定を行う
+        presenter.whetherData.map { value in
+            return value.title
+        }
+        .bind(to: areaNameLabel.rx.text)
+        .disposed(by: disposeBag)
+        
+        let toDay = presenter.whetherData
+            .flatMap { value -> Observable<WhetherForecastModel> in
+                let toDayForecast = value.forecasts.filter { $0.dateType == WhetherForecastModel.DateType.toDay }.first
+                return Observable.from(optional: toDayForecast)
+        }
+        
+        //当日のお天気アイコンを設定します
+        toDay.map { model in
+            return UIImage.webImage(url: model.iconImgUrl)
+        }
+        .bind(to: toDayWhetherIcon.rx.image)
+        .disposed(by: disposeBag)
+        
+        //今日の最低気温、最高気温を設定します
+        toDay.map { model in
+            return "\(model.maxTemp)℃/\(model.minTemp)℃"
+        }
+        .bind(to: toDayTemperatureLabel.rx.text)
+        .disposed(by: disposeBag)
+
     }
     
     func setScrollView () {
@@ -115,30 +132,43 @@ class WhetherDetailViewController: UIViewController {
                 }
                 for index in 0..<value.count {
                     let setRect: CGRect = CGRect(x: addXPos, y: 0, width: setVW, height: setVH)
-                    let dailyView = DailyWhetherView(frame: setRect)
-                    let forecast = value[index]
-                    var setType: WhetherForecastModel.DateType = .toDay
-                    switch index {
-                    case 0:
-                        setType = .toDay
-                    case 1:
-                        setType = .tomorrow
-                    case 2:
-                        setType = .dayAfterTomorrow
-                    default:
-                        continue
-                    }
-                    dailyView.dateLabel.text = setType.rawValue
-                    dailyView.whetherIcon.image = UIImage.webImage(url: forecast.iconImgUrl)
-                    let maxTemp: String = forecast.maxTemp
-                    let minTemp: String = forecast.minTemp
-                    dailyView.tempertureLabel.text = "\(maxTemp)℃/\(minTemp)℃"
+                    let dailyView = self.createForecastView(rect: setRect, idx: index)
                     self.whetherScrollDataView.addSubview(dailyView)
                     addXPos += setVW
                 }
                 let setContentsSize: CGSize = CGSize(width: addXPos, height: setVH)
                 self.whetherScrollDataView.contentSize = setContentsSize
             }).disposed(by: disposeBag)
+    }
+    
+    func createForecastView (rect: CGRect, idx: Int) -> UIView {
+        let dailyView = DailyWhetherView(frame: rect)
+        let forecat = presenter.whetherData.flatMap { value -> Observable<WhetherForecastModel> in
+            return Observable.just(value.forecasts[idx])
+        }
+        var setType: WhetherForecastModel.DateType = .toDay
+        switch idx {
+        case 0:
+            setType = .toDay
+        case 1:
+            setType = .tomorrow
+        case 2:
+            setType = .dayAfterTomorrow
+        default:
+            break
+        }
+        let dateType = Observable.just(setType.rawValue)
+        dateType.bind(to: dailyView.dateLabel.rx.text)
+        .disposed(by: disposeBag)
+        forecat.map { model in
+            return UIImage.webImage(url: model.iconImgUrl)
+        }.bind(to: dailyView.whetherIcon.rx.image)
+        .disposed(by: disposeBag)
+        forecat.map { model in
+            return "\(model.maxTemp)℃/\(model.minTemp)℃"
+        }.bind(to: dailyView.tempertureLabel.rx.text)
+        .disposed(by: disposeBag)
+        return dailyView
     }
 
 }
